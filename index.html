@@ -154,9 +154,39 @@ nav a.active { color: #F57B21; }
 }
 .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
 
+/* === MOBILE RESPONSIVE === */
+@media (max-width: 640px) {
+  /* Hero title scaling */
+  .hero-title { font-size: 2.8rem !important; }
+  /* Stats row: wrap and center */
+  .stats-row { flex-wrap: wrap; justify-content: center; gap: 1rem !important; }
+  .stats-row > div { text-align: center; }
+  .stat-number { font-size: 1.5rem !important; }
+  /* Feature grids */
+  .feature-grid-3 { grid-template-columns: 1fr !important; }
+  .feature-grid-2 { grid-template-columns: 1fr !important; }
+  /* Career coach steps grid */
+  .steps-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  /* General padding adjustments */
+  section { padding-top: 3rem; padding-bottom: 3rem; }
+  .section-title { font-size: 1.75rem !important; }
+  /* Toolkit content grid */
+  .toolkit-grid { grid-template-columns: 1fr !important; }
+  /* Phone frame */
+  .phone-frame { width: 200px; height: 400px; }
+  /* Fix overflow */
+  .overflow-fix { overflow-x: hidden; }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.2rem !important; }
+  .stats-row { gap: 0.5rem !important; }
+  .stat-number { font-size: 1.25rem !important; }
+}
+
 </style>
 </head>
-<body class="bg-dark-800 text-white">
+<body class="bg-dark-800 text-white overflow-x-hidden">
 
 <script>
 // Language toggle
@@ -251,19 +281,19 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
         <div data-lang="es">
           <p class="text-brand-400 font-display font-bold text-xs uppercase tracking-[0.3em] mb-4" style="animation: slide-up 0.6s ease-out 0.1s both;">Programa Educativo &bull; Lima, Peru</p>
           <h1 class="font-display font-black leading-[0.9] mb-6" style="animation: slide-up 0.7s ease-out 0.15s both;">
-            <span class="text-5xl sm:text-6xl lg:text-[5.5rem] text-white">Eligiendo</span><br>
-            <span class="text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">Mi Camino</span>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white">Eligiendo</span><br>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">Mi Camino</span>
           </h1>
-          <p class="font-display text-lg sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg" style="animation: slide-up 0.7s ease-out 0.2s both;">
+          <p class="font-display text-base sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg" style="animation: slide-up 0.7s ease-out 0.2s both;">
             &ldquo;El momento de elegir<br>es el momento de mostrarse&rdquo;
           </p>
-          <p class="text-white/35 text-[15px] leading-relaxed mb-10 max-w-lg" style="animation: slide-up 0.7s ease-out 0.25s both;">Dos herramientas de IA para estudiantes de 5to de secundaria en 100 colegios p&uacute;blicos de Lima: un <strong class="text-white/60">Tutor de Matem&aacute;ticas</strong> que diagnostica y ense&ntilde;a, y un <strong class="text-white/60">Coach Vocacional</strong> que gu&iacute;a decisiones de carrera con datos reales del mercado laboral peruano.</p>
+          <p class="text-white/35 text-sm sm:text-[15px] leading-relaxed mb-10 max-w-lg" style="animation: slide-up 0.7s ease-out 0.25s both;">Dos herramientas de IA para estudiantes de 5to de secundaria en 100 colegios p&uacute;blicos de Lima: un <strong class="text-white/60">Tutor de Matem&aacute;ticas</strong> que diagnostica y ense&ntilde;a, y un <strong class="text-white/60">Coach Vocacional</strong> que gu&iacute;a decisiones de carrera con datos reales del mercado laboral peruano.</p>
         </div>
         <div data-lang="en">
           <p class="text-brand-400 font-display font-bold text-xs uppercase tracking-[0.3em] mb-4">Education Program &bull; Lima, Peru</p>
           <h1 class="font-display font-black leading-[0.9] mb-6">
-            <span class="text-5xl sm:text-6xl lg:text-[5.5rem] text-white">Choosing</span><br>
-            <span class="text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">My Path</span>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white">Choosing</span><br>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">My Path</span>
           </h1>
           <p class="font-display text-lg sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg">
             &ldquo;The moment to choose<br>is the moment to show yourself&rdquo;
@@ -271,24 +301,24 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
           <p class="text-white/35 text-[15px] leading-relaxed mb-10 max-w-lg">Two AI-powered tools for 5th-year secondary students across 100 public schools in Lima: an <strong class="text-white/60">AI Math Tutor</strong> that diagnoses and teaches, and an <strong class="text-white/60">AI Career Coach</strong> that guides career decisions with real labor market data.</p>
         </div>
 
-        <div class="flex flex-wrap gap-4 mb-12" style="animation: slide-up 0.7s ease-out 0.3s both;">
-          <a href="#about" class="group relative px-8 py-4 bg-brand-400 text-white rounded-2xl font-display font-bold text-sm overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(245,123,33,0.4)] hover:scale-[1.02]">
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-12" style="animation: slide-up 0.7s ease-out 0.3s both;">
+          <a href="#about" class="group relative px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-400 text-white rounded-2xl font-display font-bold text-sm overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(245,123,33,0.4)] hover:scale-[1.02] text-center">
             <span class="relative z-10"><span data-lang-i="es">Conocer el programa</span><span data-lang-i="en">Learn more</span></span>
           </a>
-          <a href="#toolkit" class="px-8 py-4 glass text-white/70 rounded-2xl font-display font-bold text-sm transition-all duration-300 hover:bg-white/10 hover:text-white">
+          <a href="#toolkit" class="px-6 sm:px-8 py-3.5 sm:py-4 glass text-white/70 rounded-2xl font-display font-bold text-sm transition-all duration-300 hover:bg-white/10 hover:text-white text-center">
             <span data-lang-i="es">Toolkit para replicar</span><span data-lang-i="en">Replication toolkit</span>
           </a>
         </div>
 
         <!-- Stats row -->
-        <div class="flex gap-6 sm:gap-10" style="animation: slide-up 0.7s ease-out 0.35s both;">
-          <div><div class="text-3xl sm:text-4xl font-display font-black gradient-text stat-number">100</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">colegios</span><span data-lang-i="en">schools</span></div></div>
-          <div class="w-px bg-white/5"></div>
-          <div><div class="text-3xl sm:text-4xl font-display font-black gradient-text stat-number">6,300</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">estudiantes</span><span data-lang-i="en">students</span></div></div>
-          <div class="w-px bg-white/5"></div>
-          <div><div class="text-3xl sm:text-4xl font-display font-black gradient-text stat-number">400</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">docentes</span><span data-lang-i="en">teachers</span></div></div>
-          <div class="w-px bg-white/5"></div>
-          <div><div class="text-3xl sm:text-4xl font-display font-black text-white/80 stat-number">RCT</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">evaluaci&oacute;n</span><span data-lang-i="en">evaluation</span></div></div>
+        <div class="stats-row flex flex-wrap gap-4 sm:gap-10" style="animation: slide-up 0.7s ease-out 0.35s both;">
+          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">100</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">colegios</span><span data-lang-i="en">schools</span></div></div>
+          <div class="w-px bg-white/5 hidden sm:block"></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">6,300</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">estudiantes</span><span data-lang-i="en">students</span></div></div>
+          <div class="w-px bg-white/5 hidden sm:block"></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">400</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">docentes</span><span data-lang-i="en">teachers</span></div></div>
+          <div class="w-px bg-white/5 hidden sm:block"></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black text-white/80 stat-number">RCT</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">evaluaci&oacute;n</span><span data-lang-i="en">evaluation</span></div></div>
         </div>
       </div>
 
@@ -330,7 +360,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
       <div class="inline-flex items-center gap-2 bg-brand-50 px-4 py-1.5 rounded-full text-[10px] font-bold text-brand-500 uppercase tracking-[0.2em] mb-4">
         <i class="fas fa-globe-americas text-brand-400"></i> Banco Mundial &mdash; LAC Education
       </div>
-      <h2 class="font-display text-4xl sm:text-5xl font-black text-dark-500">El Programa</h2>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-dark-500">El Programa</h2>
     </div>
     <div class="grid lg:grid-cols-2 gap-16 mb-20">
       <div class="reveal-left">
@@ -347,7 +377,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
           <h3 class="font-display text-2xl font-black text-dark-500">La Soluci&oacute;n</h3>
         </div>
         <p class="text-dark-200 text-[15px] leading-[1.8] mb-6">Dos herramientas de IA que operan en paralelo durante el semestre escolar en 100 colegios p&uacute;blicos de Lima, lanz&aacute;ndose el <strong class="text-dark-500">16 de marzo de 2026</strong>.</p>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <a href="#math" class="group p-5 bg-dark-500 rounded-2xl text-white card-modern block">
             <p class="text-brand-400 font-display font-bold text-[10px] uppercase tracking-wider mb-1.5">Componente 1</p>
             <p class="font-display font-bold text-sm mb-1">Tutor de Matem&aacute;ticas</p>
@@ -376,7 +406,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
       <div class="inline-flex items-center gap-2 bg-brand-50 px-4 py-1.5 rounded-full text-[10px] font-bold text-brand-500 uppercase tracking-[0.2em] mb-4">
         <i class="fas fa-globe-americas text-brand-400"></i> World Bank &mdash; LAC Education
       </div>
-      <h2 class="font-display text-4xl sm:text-5xl font-black text-dark-500">The Program</h2>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-dark-500">The Program</h2>
     </div>
     <div class="grid lg:grid-cols-2 gap-16 mb-20">
       <div class="reveal-left">
@@ -393,7 +423,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
           <h3 class="font-display text-2xl font-black text-dark-500">The Solution</h3>
         </div>
         <p class="text-dark-200 text-[15px] leading-[1.8] mb-6">Two AI tools operating in parallel throughout the school semester across 100 public schools in Lima, launching <strong class="text-dark-500">March 16, 2026</strong>.</p>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <a href="#math" class="group p-5 bg-dark-500 rounded-2xl text-white card-modern block"><p class="text-brand-400 font-display font-bold text-[10px] uppercase tracking-wider mb-1.5">Component 1</p><p class="font-display font-bold text-sm mb-1">AI Math Tutor</p><p class="text-white/40 text-[10px]">~4,000 diagnostic questions</p><i class="fas fa-arrow-right text-brand-400 text-xs mt-3 block group-hover:translate-x-1 transition-transform"></i></a>
           <a href="#coach" class="group p-5 bg-gradient-to-br from-brand-400 to-brand-500 rounded-2xl text-white card-modern block"><p class="text-white/70 font-display font-bold text-[10px] uppercase tracking-wider mb-1.5">Component 2</p><p class="font-display font-bold text-sm mb-1">AI Career Coach</p><p class="text-white/60 text-[10px]">142 occupations, 12 sectors</p><i class="fas fa-arrow-right text-white/80 text-xs mt-3 block group-hover:translate-x-1 transition-transform"></i></a>
         </div>
@@ -572,7 +602,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
         <p class="reveal text-dark-200 text-[15px] max-w-lg mb-8 mt-4 leading-relaxed">Orientaci&oacute;n vocacional personalizada para TODOS los estudiantes: universidad, carreras t&eacute;cnicas o mercado laboral directo. <strong class="text-dark-500">142 ocupaciones en 12 sectores</strong> con datos del Ministerio de Trabajo.</p>
 
         <!-- 3 pillars -->
-        <div class="grid grid-cols-3 gap-3 mb-10 reveal">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10 reveal">
           <div class="bg-beige-50 rounded-2xl p-4 text-center card-modern border border-beige-100"><div class="text-2xl mb-1">&#10084;&#65039;</div><p class="font-display font-bold text-dark-500 text-xs">Autoconocimiento</p><p class="text-dark-200 text-[9px] mt-0.5">Qui&eacute;n soy</p></div>
           <div class="bg-beige-50 rounded-2xl p-4 text-center card-modern border border-beige-100"><div class="text-2xl mb-1">&#127758;</div><p class="font-display font-bold text-dark-500 text-xs">Exploraci&oacute;n</p><p class="text-dark-200 text-[9px] mt-0.5">Opciones reales</p></div>
           <div class="bg-beige-50 rounded-2xl p-4 text-center card-modern border border-beige-100"><div class="text-2xl mb-1">&#127919;</div><p class="font-display font-bold text-dark-500 text-xs">Decisi&oacute;n</p><p class="text-dark-200 text-[9px] mt-0.5">Plan concreto</p></div>
@@ -580,7 +610,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
 
         <!-- 8 Steps -->
         <h3 class="reveal font-display font-bold text-dark-400 text-[11px] uppercase tracking-[0.2em] mb-5"><i class="fas fa-route text-brand-400 mr-2"></i>8 Pasos &mdash; 12 sesiones de 60 min</h3>
-        <div class="grid grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div class="reveal stagger-1 bg-white rounded-xl p-3.5 border border-beige-100 card-modern"><div class="flex items-center gap-2 mb-1.5"><span class="w-6 h-6 bg-brand-400 rounded-lg flex items-center justify-center text-white font-display font-black text-[10px]">1</span><span class="text-[9px] text-dark-200">Ses. 1-2</span></div><p class="font-display font-bold text-dark-500 text-xs">Autoconocimiento</p></div>
           <div class="reveal stagger-2 bg-white rounded-xl p-3.5 border border-beige-100 card-modern"><div class="flex items-center gap-2 mb-1.5"><span class="w-6 h-6 bg-brand-400 rounded-lg flex items-center justify-center text-white font-display font-black text-[10px]">2</span><span class="text-[9px] text-dark-200">Ses. 3</span></div><p class="font-display font-bold text-dark-500 text-xs">Mitos Vocacionales</p></div>
           <div class="reveal stagger-3 bg-white rounded-xl p-3.5 border border-beige-100 card-modern"><div class="flex items-center gap-2 mb-1.5"><span class="w-6 h-6 bg-brand-400 rounded-lg flex items-center justify-center text-white font-display font-black text-[10px]">3</span><span class="text-[9px] text-dark-200">Ses. 4</span></div><p class="font-display font-bold text-dark-500 text-xs">Test de Intereses RIASEC</p></div>
@@ -597,13 +627,13 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
           <div><p class="text-brand-400 font-display font-bold text-[10px] uppercase tracking-[0.25em]">Component 2 &mdash; "Eligiendo Mi Camino"</p><h2 class="font-display text-3xl sm:text-4xl font-black text-dark-500">AI Career Coach</h2></div>
         </div>
         <p class="reveal text-dark-200 text-[15px] max-w-lg mb-8 mt-4 leading-relaxed">Personalized career guidance for ALL students: university, technical careers, or direct employment. <strong class="text-dark-500">142 occupations across 12 sectors</strong> with Ministry of Labor data.</p>
-        <div class="grid grid-cols-3 gap-3 mb-10 reveal">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10 reveal">
           <div class="bg-beige-50 rounded-2xl p-4 text-center card-modern border border-beige-100"><div class="text-2xl mb-1">&#10084;&#65039;</div><p class="font-display font-bold text-dark-500 text-xs">Self-Knowledge</p><p class="text-dark-200 text-[9px] mt-0.5">Who I am</p></div>
           <div class="bg-beige-50 rounded-2xl p-4 text-center card-modern border border-beige-100"><div class="text-2xl mb-1">&#127758;</div><p class="font-display font-bold text-dark-500 text-xs">Exploration</p><p class="text-dark-200 text-[9px] mt-0.5">Real options</p></div>
           <div class="bg-beige-50 rounded-2xl p-4 text-center card-modern border border-beige-100"><div class="text-2xl mb-1">&#127919;</div><p class="font-display font-bold text-dark-500 text-xs">Decision</p><p class="text-dark-200 text-[9px] mt-0.5">Concrete plan</p></div>
         </div>
         <h3 class="reveal font-display font-bold text-dark-400 text-[11px] uppercase tracking-[0.2em] mb-5"><i class="fas fa-route text-brand-400 mr-2"></i>8 Steps &mdash; 12 sessions of 60 min</h3>
-        <div class="grid grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div class="reveal stagger-1 bg-white rounded-xl p-3.5 border border-beige-100 card-modern"><div class="flex items-center gap-2 mb-1.5"><span class="w-6 h-6 bg-brand-400 rounded-lg flex items-center justify-center text-white font-display font-black text-[10px]">1</span><span class="text-[9px] text-dark-200">S. 1-2</span></div><p class="font-display font-bold text-dark-500 text-xs">Self-Discovery</p></div>
           <div class="reveal stagger-2 bg-white rounded-xl p-3.5 border border-beige-100 card-modern"><div class="flex items-center gap-2 mb-1.5"><span class="w-6 h-6 bg-brand-400 rounded-lg flex items-center justify-center text-white font-display font-black text-[10px]">2</span><span class="text-[9px] text-dark-200">S. 3</span></div><p class="font-display font-bold text-dark-500 text-xs">Vocational Myths</p></div>
           <div class="reveal stagger-3 bg-white rounded-xl p-3.5 border border-beige-100 card-modern"><div class="flex items-center gap-2 mb-1.5"><span class="w-6 h-6 bg-brand-400 rounded-lg flex items-center justify-center text-white font-display font-black text-[10px]">3</span><span class="text-[9px] text-dark-200">S. 4</span></div><p class="font-display font-bold text-dark-500 text-xs">Interest Test (RIASEC)</p></div>
@@ -699,7 +729,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
       <div class="inline-flex items-center gap-2 bg-wb-blue/10 px-5 py-2 rounded-full text-[10px] font-bold text-wb-blue uppercase tracking-[0.2em] mb-4">
         <i class="fas fa-flask text-wb-light"></i> Desarrollo de Investigaci&oacute;n &mdash; AI/DD Initiative
       </div>
-      <h2 class="font-display text-4xl sm:text-5xl font-black text-dark-500">Evaluaci&oacute;n de Impacto</h2>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-dark-500">Evaluaci&oacute;n de Impacto</h2>
     </div>
 
     <!-- Research question -->
@@ -742,7 +772,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
       <div class="inline-flex items-center gap-2 bg-wb-blue/10 px-5 py-2 rounded-full text-[10px] font-bold text-wb-blue uppercase tracking-[0.2em] mb-4">
         <i class="fas fa-flask text-wb-light"></i> Development Research &mdash; AI/DD Initiative
       </div>
-      <h2 class="font-display text-4xl sm:text-5xl font-black text-dark-500">Impact Evaluation</h2>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-dark-500">Impact Evaluation</h2>
     </div>
 
     <!-- Research question -->
@@ -790,7 +820,7 @@ function toggleMob() { document.getElementById('mob').classList.toggle('hidden')
     <div class="inline-flex items-center gap-2 bg-brand-400/10 border border-brand-400/20 px-5 py-2 rounded-full text-xs font-display font-bold text-brand-400 mb-5">
       <i class="fas fa-lock"></i> World Bank TTL Exclusive
     </div>
-    <h2 class="font-display text-4xl sm:text-5xl font-black"><span data-lang-i="es">Toolkit de Replicaci&oacute;n</span><span data-lang-i="en">Replication Toolkit</span></h2>
+    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black"><span data-lang-i="es">Toolkit de Replicaci&oacute;n</span><span data-lang-i="en">Replication Toolkit</span></h2>
     <p class="text-white/25 mt-4 max-w-xl mx-auto text-sm leading-relaxed"><span data-lang-i="es">Recursos para TTLs del Banco Mundial que desean replicar este programa en otros pa&iacute;ses.</span><span data-lang-i="en">Resources for World Bank TTLs seeking to replicate this program in other countries.</span></p>
   </div>
 
