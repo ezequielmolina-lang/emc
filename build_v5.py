@@ -59,7 +59,7 @@ html = f'''<!DOCTYPE html>
 <title>Eligiendo Mi Camino | World Bank</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Anton&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script>
 tailwind.config = {{
@@ -207,6 +207,15 @@ nav a.active {{ color: #F57B21; }}
 }}
 .browser-dot {{ width: 10px; height: 10px; border-radius: 50%; }}
 
+/* === HERO TITLE FONT === */
+.hero-title {{ font-family: 'Anton', 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }}
+.wing-e {{ position: relative; display: inline-block; }}
+.wing-e::before {{
+  content: ''; position: absolute; top: 15%; left: -0.3em; width: 0.7em; height: 0.5em;
+  background: currentColor; clip-path: polygon(100% 30%, 60% 0%, 0% 25%, 30% 50%, 0% 75%, 60% 100%, 100% 70%);
+  opacity: 0.9;
+}}
+
 /* === MOBILE RESPONSIVE === */
 @media (max-width: 640px) {{
   /* Hero title scaling */
@@ -334,7 +343,7 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
         <div data-lang="es">
           <p class="text-brand-400 font-display font-bold text-xs uppercase tracking-[0.3em] mb-4" style="animation: slide-up 0.6s ease-out 0.1s both;">Programa Educativo &bull; Lima, Peru</p>
           <h1 class="font-display font-black leading-[0.9] mb-6" style="animation: slide-up 0.7s ease-out 0.15s both;">
-            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white">Eligiendo</span><br>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white"><span class="wing-e">E</span>ligiendo</span><br>
             <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">Mi Camino</span>
           </h1>
           <p class="font-display text-base sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg" style="animation: slide-up 0.7s ease-out 0.2s both;">
