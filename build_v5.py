@@ -396,8 +396,10 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
       <!-- Right: Gallito -->
       <div class="lg:col-span-5 flex flex-col items-center" style="animation: slide-in-right 0.8s ease-out 0.3s both;">
         <div class="relative flex flex-col items-center">
-          <!-- Gallito video -->
-          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-72 w-auto" style="mix-blend-mode: multiply;" poster="{GALLITO_IMG}"></video>
+          <!-- Gallito video - cropped to hide decorative circles from the video -->
+          <div class="relative z-10 h-56 sm:h-64 lg:h-72 overflow-hidden flex items-center justify-center" style="width: 280px;">
+            <video src="gallito_video.mp4" autoplay loop muted playsinline class="h-[140%] w-auto max-w-none" style="mix-blend-mode: multiply; object-fit: cover;" poster="{GALLITO_IMG}"></video>
+          </div>
           <!-- Info card overlapping the video bottom -->
           <div class="relative z-20 -mt-10 bg-white/95 backdrop-blur-sm border border-beige-100 rounded-3xl p-5 max-w-[300px] text-center shadow-lg shadow-brand-400/5">
             <div data-lang="es">
