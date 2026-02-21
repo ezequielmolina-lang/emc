@@ -398,14 +398,10 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
       <!-- Right: Gallito -->
       <div class="lg:col-span-5 flex flex-col items-center" style="animation: slide-in-right 0.8s ease-out 0.3s both;">
         <div class="relative flex flex-col items-center">
-          <!-- Decorative circles behind everything -->
-          <div class="absolute -top-10 -right-6 w-32 h-32 bg-brand-400 rounded-full opacity-[0.07]"></div>
-          <div class="absolute top-1/2 -left-10 w-24 h-24 bg-brand-400 rounded-full opacity-[0.06]"></div>
-          <div class="absolute -bottom-6 right-4 w-20 h-20 bg-beige-100 rounded-full opacity-60"></div>
           <!-- Gallito video -->
           <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-72 w-auto" style="mix-blend-mode: multiply;" poster="{GALLITO_IMG}"></video>
-          <!-- Info card directly below, overlapping slightly -->
-          <div class="relative z-10 -mt-4 bg-white border border-beige-100 rounded-3xl p-5 max-w-[300px] text-center shadow-lg shadow-brand-400/5">
+          <!-- Info card overlapping the video bottom -->
+          <div class="relative z-20 -mt-10 bg-white/95 backdrop-blur-sm border border-beige-100 rounded-3xl p-5 max-w-[300px] text-center shadow-lg shadow-brand-400/5">
             <div data-lang="es">
               <p class="font-display font-bold gradient-text text-sm">Gallito de las Rocas</p>
               <p class="text-dark-200 text-[11px] leading-relaxed mt-2">Ave emblem&aacute;tica peruana que simboliza el momento decisivo en que el estudiante est&aacute; listo para <strong class="text-dark-500">mostrarse tal como es frente al mundo</strong> y tomar una decisi&oacute;n sobre su futuro.</p>
