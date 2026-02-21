@@ -339,7 +339,7 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
         <div data-lang="es">
           <p class="text-brand-400 font-display font-bold text-xs uppercase tracking-[0.3em] mb-4" style="animation: slide-up 0.6s ease-out 0.1s both;">Programa Educativo &bull; Lima, Peru</p>
           <h1 class="font-display font-black leading-[0.9] mb-6" style="animation: slide-up 0.7s ease-out 0.15s both;">
-            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white"><span class="wing-e"><svg viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M48 22 C36 18 22 12 4 6 C14 14 24 20 34 24 C24 20 14 14 4 6" fill="none" stroke="#F57B21" stroke-width="5" stroke-linecap="round"/><path d="M48 38 C36 42 22 48 4 54 C14 46 24 40 34 36 C24 40 14 46 4 54" fill="none" stroke="#F57B21" stroke-width="5" stroke-linecap="round"/></svg>E</span>ligiendo</span><br>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white"><span class="wing-e"><svg viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M46 26 Q30 18 4 4" fill="none" stroke="#F57B21" stroke-width="4.5" stroke-linecap="round"/><path d="M46 34 Q30 42 4 56" fill="none" stroke="#F57B21" stroke-width="4.5" stroke-linecap="round"/></svg>E</span>ligiendo</span><br>
             <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">Mi Camino</span>
           </h1>
           <p class="font-display text-base sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg" style="animation: slide-up 0.7s ease-out 0.2s both;">
