@@ -152,6 +152,17 @@ html[lang="en"] [data-lang-i="es"] {{ display: none; }}
 html[lang="es"] [data-lang-i="en"] {{ display: none; }}
 html[lang="es"] [data-lang-i="es"] {{ display: inline; }}
 
+/* Nav states */
+.nav-top a, .nav-top span {{ color: #26282B !important; }}
+.nav-top .lang-btn {{ color: #26282B !important; border-color: rgba(38,40,43,0.2) !important; }}
+.nav-top .nav-brand {{ color: #26282B !important; }}
+.nav-scrolled a, .nav-scrolled span {{ color: rgba(255,255,255,0.5) !important; }}
+.nav-scrolled .lang-btn {{ color: rgba(255,255,255,0.5) !important; border-color: rgba(255,255,255,0.2) !important; }}
+.nav-scrolled .nav-brand {{ color: rgba(255,255,255,0.9) !important; }}
+.nav-scrolled a:hover {{ color: #F57B21 !important; }}
+.nav-top a:hover {{ color: #F57B21 !important; }}
+.nav-top .nav-toolkit, .nav-scrolled .nav-toolkit {{ color: white !important; }}
+
 /* Scrollbar */
 ::-webkit-scrollbar {{ width:5px; }}
 ::-webkit-scrollbar-track {{ background:#16171A; }}
@@ -273,33 +284,38 @@ document.addEventListener('DOMContentLoaded', () => {{
 // Navbar scroll
 window.addEventListener('scroll', () => {{
   const nav = document.getElementById('mainNav');
-  if (window.scrollY > 50) {{ nav.classList.add('bg-dark-800/95','shadow-lg','shadow-black/20'); nav.classList.remove('bg-transparent'); }}
-  else {{ nav.classList.remove('bg-dark-800/95','shadow-lg','shadow-black/20'); nav.classList.add('bg-transparent'); }}
+  if (window.scrollY > 50) {{
+    nav.classList.add('bg-dark-800/95','shadow-lg','shadow-black/20','nav-scrolled');
+    nav.classList.remove('bg-white/95','shadow-md','shadow-black/5','nav-top');
+  }} else {{
+    nav.classList.remove('bg-dark-800/95','shadow-lg','shadow-black/20','nav-scrolled');
+    nav.classList.add('bg-white/95','shadow-md','shadow-black/5','nav-top');
+  }}
 }});
 // Mobile menu
 function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'); }}
 </script>
 
 <!-- ════════════ NAV ════════════ -->
-<nav id="mainNav" class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl transition-all duration-500">
+<nav id="mainNav" class="fixed top-0 w-full z-50 bg-white/95 shadow-md shadow-black/5 nav-top backdrop-blur-xl transition-all duration-500">
 <div class="stripe"></div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <div class="flex justify-between items-center h-16">
     <div class="flex items-center gap-3">
       <img src="{WBG_LOGO_B64}" alt="World Bank Group" class="h-7 w-auto">
-      <div class="w-px h-6 bg-white/10"></div>
+      <div class="w-px h-6 bg-dark-100"></div>
       <img src="{GALLITO_MINI}" alt="Gallito" class="h-7 w-auto">
-      <span class="hidden sm:inline font-display font-bold text-white/90 text-sm tracking-tight">Eligiendo Mi Camino</span>
+      <span class="nav-brand hidden sm:inline font-display font-bold text-sm tracking-tight">Eligiendo Mi Camino</span>
     </div>
-    <div class="hidden md:flex items-center gap-6 text-[11px] font-semibold text-white/50 uppercase tracking-[0.15em]">
+    <div class="hidden md:flex items-center gap-6 text-[11px] font-semibold uppercase tracking-[0.15em]">
       <a href="#about" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Programa</span><span data-lang-i="en">Program</span></a>
       <a href="#math" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Tutor Matem&aacute;tica</span><span data-lang-i="en">Math Tutor</span></a>
       <a href="#coach" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Coach</span><span data-lang-i="en">Coach</span></a>
       <a href="#partners" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Socios</span><span data-lang-i="en">Partners</span></a>
-      <a href="#toolkit" class="px-4 py-1.5 bg-brand-400 text-white rounded-full hover:bg-brand-500 transition-all duration-300 normal-case tracking-normal text-xs font-bold">Toolkit</a>
-      <button onclick="toggleLang()" class="lang-btn w-8 h-8 border border-white/20 rounded-full text-[10px] font-bold hover:border-brand-400 hover:text-brand-400 transition-all duration-300">EN</button>
+      <a href="#toolkit" class="nav-toolkit px-4 py-1.5 bg-brand-400 text-white rounded-full hover:bg-brand-500 transition-all duration-300 normal-case tracking-normal text-xs font-bold">Toolkit</a>
+      <button onclick="toggleLang()" class="lang-btn w-8 h-8 border rounded-full text-[10px] font-bold hover:border-brand-400 hover:text-brand-400 transition-all duration-300">EN</button>
     </div>
-    <button onclick="toggleMob()" class="md:hidden p-2 text-white/70"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    <button onclick="toggleMob()" class="md:hidden p-2 text-dark-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
   </div>
 </div>
 <div id="mob" class="hidden md:hidden bg-dark-700/95 backdrop-blur-xl border-t border-white/5 px-6 py-4 space-y-3">
@@ -378,7 +394,7 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
       <div class="lg:col-span-5 flex flex-col items-center" style="animation: slide-in-right 0.8s ease-out 0.3s both;">
         <div class="relative">
           <div class="absolute -inset-16 bg-brand-400/8 rounded-full blur-[80px]"></div>
-          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-80 w-auto drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)]" poster="{GALLITO_IMG}"></video>
+          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-80 w-auto" style="mix-blend-mode: multiply;" poster="{GALLITO_IMG}"></video>
         </div>
         <div class="relative z-10 mt-8 bg-beige-50 border border-beige-100 rounded-3xl p-5 max-w-[300px] text-center">
           <div data-lang="es">
