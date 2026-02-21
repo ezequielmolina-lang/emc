@@ -335,9 +335,9 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
 <!-- ════════════ HERO ════════════ -->
 <section class="bg-white min-h-screen flex items-center relative overflow-hidden">
   <!-- Soft decorative circles - matching video's beige tones, placed away from Gallito -->
-  <div class="absolute -top-20 left-[5%] w-[200px] h-[200px] rounded-full opacity-30" style="background: #F3E0C4;"></div>
-  <div class="absolute bottom-[10%] left-[2%] w-[120px] h-[120px] rounded-full opacity-20" style="background: #F3E0C4;"></div>
-  <div class="absolute top-[8%] right-[3%] w-[150px] h-[150px] rounded-full opacity-25" style="background: #F3E0C4;"></div>
+  <div class="absolute -top-16 left-[3%] w-[180px] h-[180px] rounded-full opacity-25" style="background: #F3E0C4;"></div>
+  <div class="absolute bottom-[8%] left-[1%] w-[100px] h-[100px] rounded-full opacity-20" style="background: #F3E0C4;"></div>
+  <div class="absolute -top-10 -right-10 w-[140px] h-[140px] rounded-full opacity-20" style="background: #F3E0C4;"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 relative z-10 w-full">
     <div class="grid lg:grid-cols-12 gap-10 items-center">
