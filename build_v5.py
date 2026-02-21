@@ -59,7 +59,7 @@ html = f'''<!DOCTYPE html>
 <title>Eligiendo Mi Camino | World Bank</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Anton&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script>
 tailwind.config = {{
@@ -207,11 +207,6 @@ nav a.active {{ color: #F57B21; }}
 }}
 .browser-dot {{ width: 10px; height: 10px; border-radius: 50%; }}
 
-/* === HERO TITLE FONT === */
-.hero-title {{ font-family: 'Anton', 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }}
-.wing-e {{ position: relative; display: inline-flex; align-items: center; }}
-.wing-e svg {{ position: absolute; right: 100%; top: 50%; transform: translateY(-50%); width: 0.55em; height: 0.55em; margin-right: -0.05em; }}
-
 /* === MOBILE RESPONSIVE === */
 @media (max-width: 640px) {{
   /* Hero title scaling */
@@ -317,66 +312,65 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
 </nav>
 
 <!-- ════════════ HERO ════════════ -->
-<section class="mesh-hero min-h-screen flex items-center relative overflow-hidden">
+<section class="bg-white min-h-screen flex items-center relative overflow-hidden">
   <!-- Decorative elements -->
-  <div class="absolute top-20 right-[10%] w-72 h-72 rounded-full border border-brand-400/10 hidden lg:block"></div>
-  <div class="absolute bottom-32 left-[5%] w-48 h-48 rounded-full border border-white/5 hidden lg:block"></div>
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-50 rounded-full -translate-y-1/4 translate-x-1/4 opacity-60"></div>
+  <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-beige-100/30 rounded-full translate-y-1/4 -translate-x-1/4"></div>
   <div class="absolute top-1/3 left-[15%] w-2 h-2 bg-brand-400 rounded-full pulse-glow"></div>
-  <div class="absolute top-2/3 right-[20%] w-1.5 h-1.5 bg-beige-100 rounded-full pulse-glow" style="animation-delay:2s"></div>
-  <div class="absolute top-1/2 right-[8%] w-1 h-1 bg-brand-400 rounded-full opacity-30"></div>
+  <div class="absolute top-2/3 right-[20%] w-1.5 h-1.5 bg-brand-200 rounded-full pulse-glow" style="animation-delay:2s"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 relative z-10 w-full">
     <div class="grid lg:grid-cols-12 gap-10 items-center">
 
       <!-- Left: text -->
       <div class="lg:col-span-7">
-        <div class="inline-flex items-center gap-2.5 glass rounded-full px-5 py-2.5 mb-10" style="animation: slide-up 0.6s ease-out both;">
+        <div class="inline-flex items-center gap-2.5 bg-dark-500 rounded-full px-5 py-2.5 mb-10" style="animation: slide-up 0.6s ease-out both;">
           <img src="{WBG_LOGO_B64}" alt="WB" class="h-4 w-auto brightness-0 invert opacity-60">
           <div class="w-px h-3 bg-white/10"></div>
-          <span class="text-[11px] font-medium text-white/40 tracking-wide">WBG Innovation Award &mdash; "From Learning to Earning"</span>
+          <span class="text-[11px] font-medium text-white/60 tracking-wide">WBG Innovation Award &mdash; "From Learning to Earning"</span>
         </div>
 
         <div data-lang="es">
           <p class="text-brand-400 font-display font-bold text-xs uppercase tracking-[0.3em] mb-4" style="animation: slide-up 0.6s ease-out 0.1s both;">Programa Educativo &bull; Lima, Peru</p>
           <h1 class="font-display font-black leading-[0.9] mb-6" style="animation: slide-up 0.7s ease-out 0.15s both;">
-            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white"><span class="wing-e"><svg viewBox="0 0 50 60" xmlns="http://www.w3.org/2000/svg"><path d="M46 26 Q30 18 4 4" fill="none" stroke="#F57B21" stroke-width="4.5" stroke-linecap="round"/><path d="M46 34 Q30 42 4 56" fill="none" stroke="#F57B21" stroke-width="4.5" stroke-linecap="round"/></svg>E</span>ligiendo</span><br>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-dark-500">Eligiendo</span><br>
             <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">Mi Camino</span>
           </h1>
-          <p class="font-display text-base sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg" style="animation: slide-up 0.7s ease-out 0.2s both;">
+          <p class="font-display text-base sm:text-xl font-semibold italic text-dark-200 mb-6 max-w-lg" style="animation: slide-up 0.7s ease-out 0.2s both;">
             &ldquo;El momento de elegir<br>es el momento de mostrarse&rdquo;
           </p>
-          <p class="text-white/35 text-sm sm:text-[15px] leading-relaxed mb-10 max-w-lg" style="animation: slide-up 0.7s ease-out 0.25s both;">Dos herramientas de IA para estudiantes de 5to de secundaria en 100 colegios p&uacute;blicos de Lima: un <strong class="text-white/60">Tutor de Matem&aacute;ticas</strong> que diagnostica y ense&ntilde;a, y un <strong class="text-white/60">Coach Vocacional</strong> que gu&iacute;a decisiones de carrera con datos reales del mercado laboral peruano.</p>
+          <p class="text-dark-200 text-sm sm:text-[15px] leading-relaxed mb-10 max-w-lg" style="animation: slide-up 0.7s ease-out 0.25s both;">Dos herramientas de IA para estudiantes de 5to de secundaria en 100 colegios p&uacute;blicos de Lima: un <strong class="text-dark-500">Tutor de Matem&aacute;ticas</strong> que diagnostica y ense&ntilde;a, y un <strong class="text-dark-500">Coach Vocacional</strong> que gu&iacute;a decisiones de carrera con datos reales del mercado laboral peruano.</p>
         </div>
         <div data-lang="en">
           <p class="text-brand-400 font-display font-bold text-xs uppercase tracking-[0.3em] mb-4">Education Program &bull; Lima, Peru</p>
           <h1 class="font-display font-black leading-[0.9] mb-6">
-            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-white">Choosing</span><br>
+            <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] text-dark-500">Choosing</span><br>
             <span class="hero-title text-5xl sm:text-6xl lg:text-[5.5rem] gradient-text">My Path</span>
           </h1>
-          <p class="font-display text-lg sm:text-xl font-semibold italic text-white/30 mb-6 max-w-lg">
+          <p class="font-display text-lg sm:text-xl font-semibold italic text-dark-200 mb-6 max-w-lg">
             &ldquo;The moment to choose<br>is the moment to show yourself&rdquo;
           </p>
-          <p class="text-white/35 text-[15px] leading-relaxed mb-10 max-w-lg">Two AI-powered tools for 5th-year secondary students across 100 public schools in Lima: an <strong class="text-white/60">AI Math Tutor</strong> that diagnoses and teaches, and an <strong class="text-white/60">AI Career Coach</strong> that guides career decisions with real labor market data.</p>
+          <p class="text-dark-200 text-[15px] leading-relaxed mb-10 max-w-lg">Two AI-powered tools for 5th-year secondary students across 100 public schools in Lima: an <strong class="text-dark-500">AI Math Tutor</strong> that diagnoses and teaches, and an <strong class="text-dark-500">AI Career Coach</strong> that guides career decisions with real labor market data.</p>
         </div>
 
         <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-12" style="animation: slide-up 0.7s ease-out 0.3s both;">
           <a href="#about" class="group relative px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-400 text-white rounded-2xl font-display font-bold text-sm overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(245,123,33,0.4)] hover:scale-[1.02] text-center">
             <span class="relative z-10"><span data-lang-i="es">Conocer el programa</span><span data-lang-i="en">Learn more</span></span>
           </a>
-          <a href="#toolkit" class="px-6 sm:px-8 py-3.5 sm:py-4 glass text-white/70 rounded-2xl font-display font-bold text-sm transition-all duration-300 hover:bg-white/10 hover:text-white text-center">
+          <a href="#toolkit" class="px-6 sm:px-8 py-3.5 sm:py-4 bg-dark-500 text-white/80 rounded-2xl font-display font-bold text-sm transition-all duration-300 hover:bg-dark-400 text-center">
             <span data-lang-i="es">Toolkit para replicar</span><span data-lang-i="en">Replication toolkit</span>
           </a>
         </div>
 
         <!-- Stats row -->
         <div class="stats-row flex flex-wrap gap-4 sm:gap-10" style="animation: slide-up 0.7s ease-out 0.35s both;">
-          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">100</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">colegios</span><span data-lang-i="en">schools</span></div></div>
-          <div class="w-px bg-white/5 hidden sm:block"></div>
-          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">6,300</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">estudiantes</span><span data-lang-i="en">students</span></div></div>
-          <div class="w-px bg-white/5 hidden sm:block"></div>
-          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">400</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">docentes</span><span data-lang-i="en">teachers</span></div></div>
-          <div class="w-px bg-white/5 hidden sm:block"></div>
-          <div><div class="text-2xl sm:text-4xl font-display font-black text-white/80 stat-number">RCT</div><div class="text-[10px] text-white/25 mt-1 uppercase tracking-wider"><span data-lang-i="es">evaluaci&oacute;n</span><span data-lang-i="en">evaluation</span></div></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">100</div><div class="text-[10px] text-dark-200 mt-1 uppercase tracking-wider"><span data-lang-i="es">colegios</span><span data-lang-i="en">schools</span></div></div>
+          <div class="w-px bg-dark-50 hidden sm:block"></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">6,300</div><div class="text-[10px] text-dark-200 mt-1 uppercase tracking-wider"><span data-lang-i="es">estudiantes</span><span data-lang-i="en">students</span></div></div>
+          <div class="w-px bg-dark-50 hidden sm:block"></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black gradient-text stat-number">400</div><div class="text-[10px] text-dark-200 mt-1 uppercase tracking-wider"><span data-lang-i="es">docentes</span><span data-lang-i="en">teachers</span></div></div>
+          <div class="w-px bg-dark-50 hidden sm:block"></div>
+          <div><div class="text-2xl sm:text-4xl font-display font-black text-dark-500 stat-number">RCT</div><div class="text-[10px] text-dark-200 mt-1 uppercase tracking-wider"><span data-lang-i="es">evaluaci&oacute;n</span><span data-lang-i="en">evaluation</span></div></div>
         </div>
       </div>
 
@@ -384,17 +378,16 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
       <div class="lg:col-span-5 flex flex-col items-center" style="animation: slide-in-right 0.8s ease-out 0.3s both;">
         <div class="relative">
           <div class="absolute -inset-16 bg-brand-400/8 rounded-full blur-[80px]"></div>
-          <div class="absolute -inset-8 border border-brand-400/5 rounded-full"></div>
-          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-80 w-auto drop-shadow-[0_30px_60px_rgba(245,123,33,0.2)]" style="mix-blend-mode: screen;" poster="{GALLITO_IMG}"></video>
+          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-80 w-auto drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)]" poster="{GALLITO_IMG}"></video>
         </div>
-        <div class="relative z-10 mt-8 glass rounded-3xl p-5 max-w-[300px] text-center">
+        <div class="relative z-10 mt-8 bg-beige-50 border border-beige-100 rounded-3xl p-5 max-w-[300px] text-center">
           <div data-lang="es">
             <p class="font-display font-bold gradient-text text-sm">Gallito de las Rocas</p>
-            <p class="text-white/35 text-[11px] leading-relaxed mt-2">Ave emblem&aacute;tica peruana que simboliza el momento decisivo en que el estudiante est&aacute; listo para <strong class="text-white/60">mostrarse tal como es frente al mundo</strong> y tomar una decisi&oacute;n sobre su futuro.</p>
+            <p class="text-dark-200 text-[11px] leading-relaxed mt-2">Ave emblem&aacute;tica peruana que simboliza el momento decisivo en que el estudiante est&aacute; listo para <strong class="text-dark-500">mostrarse tal como es frente al mundo</strong> y tomar una decisi&oacute;n sobre su futuro.</p>
           </div>
           <div data-lang="en">
             <p class="font-display font-bold gradient-text text-sm">Andean Cock-of-the-Rock</p>
-            <p class="text-white/35 text-[11px] leading-relaxed mt-2">Peru's iconic national bird, symbolizing the decisive moment when a student is ready to <strong class="text-white/60">show the world who they truly are</strong> and make a decision about their future.</p>
+            <p class="text-dark-200 text-[11px] leading-relaxed mt-2">Peru's iconic national bird, symbolizing the decisive moment when a student is ready to <strong class="text-dark-500">show the world who they truly are</strong> and make a decision about their future.</p>
           </div>
         </div>
       </div>
@@ -402,9 +395,9 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20">
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-dark-200">
     <span class="text-[9px] uppercase tracking-[0.3em]">Scroll</span>
-    <div class="w-5 h-8 border border-white/15 rounded-full flex justify-center pt-1.5"><div class="w-1 h-2 bg-brand-400 rounded-full animate-bounce"></div></div>
+    <div class="w-5 h-8 border border-dark-100 rounded-full flex justify-center pt-1.5"><div class="w-1 h-2 bg-brand-400 rounded-full animate-bounce"></div></div>
   </div>
 </section>
 
