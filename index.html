@@ -100,15 +100,20 @@ html[lang="es"] [data-lang-i="en"] { display: none; }
 html[lang="es"] [data-lang-i="es"] { display: inline; }
 
 /* Nav states */
-.nav-top a, .nav-top span { color: #26282B !important; }
-.nav-top .lang-btn { color: #26282B !important; border-color: rgba(38,40,43,0.2) !important; }
-.nav-top .nav-brand { color: #26282B !important; }
-.nav-scrolled a, .nav-scrolled span { color: rgba(255,255,255,0.5) !important; }
-.nav-scrolled .lang-btn { color: rgba(255,255,255,0.5) !important; border-color: rgba(255,255,255,0.2) !important; }
-.nav-scrolled .nav-brand { color: rgba(255,255,255,0.9) !important; }
-.nav-scrolled a:hover { color: #F57B21 !important; }
-.nav-top a:hover { color: #F57B21 !important; }
-.nav-top .nav-toolkit, .nav-scrolled .nav-toolkit { color: white !important; }
+#mainNav.nav-top { background: rgba(255,255,255,0.95) !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important; }
+#mainNav.nav-top a { color: #26282B !important; }
+#mainNav.nav-top span { color: #26282B !important; }
+#mainNav.nav-top button { color: #26282B !important; }
+#mainNav.nav-top .lang-btn { border-color: rgba(38,40,43,0.25) !important; }
+#mainNav.nav-top .nav-toolkit { color: white !important; }
+#mainNav.nav-scrolled { background: rgba(13,14,16,0.95) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important; }
+#mainNav.nav-scrolled a { color: rgba(255,255,255,0.5) !important; }
+#mainNav.nav-scrolled span { color: rgba(255,255,255,0.5) !important; }
+#mainNav.nav-scrolled button { color: rgba(255,255,255,0.5) !important; }
+#mainNav.nav-scrolled .nav-brand { color: rgba(255,255,255,0.9) !important; }
+#mainNav.nav-scrolled .lang-btn { border-color: rgba(255,255,255,0.2) !important; }
+#mainNav.nav-scrolled .nav-toolkit { color: white !important; }
+#mainNav a:hover { color: #F57B21 !important; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width:5px; }
@@ -232,11 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('mainNav');
   if (window.scrollY > 50) {
-    nav.classList.add('bg-dark-800/95','shadow-lg','shadow-black/20','nav-scrolled');
-    nav.classList.remove('bg-white/95','shadow-md','shadow-black/5','nav-top');
+    nav.classList.add('nav-scrolled');
+    nav.classList.remove('nav-top');
   } else {
-    nav.classList.remove('bg-dark-800/95','shadow-lg','shadow-black/20','nav-scrolled');
-    nav.classList.add('bg-white/95','shadow-md','shadow-black/5','nav-top');
+    nav.classList.remove('nav-scrolled');
+    nav.classList.add('nav-top');
   }
 });
 // Mobile menu
