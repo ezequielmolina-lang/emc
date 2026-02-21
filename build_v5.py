@@ -380,7 +380,7 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
         <div class="relative">
           <div class="absolute -inset-16 bg-brand-400/8 rounded-full blur-[80px]"></div>
           <div class="absolute -inset-8 border border-brand-400/5 rounded-full"></div>
-          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-80 w-auto drop-shadow-[0_30px_60px_rgba(245,123,33,0.2)]" poster="{GALLITO_IMG}"></video>
+          <video src="gallito_video.mp4" autoplay loop muted playsinline class="relative z-10 h-56 sm:h-64 lg:h-80 w-auto drop-shadow-[0_30px_60px_rgba(245,123,33,0.2)]" style="mix-blend-mode: screen;" poster="{GALLITO_IMG}"></video>
         </div>
         <div class="relative z-10 mt-8 glass rounded-3xl p-5 max-w-[300px] text-center">
           <div data-lang="es">
