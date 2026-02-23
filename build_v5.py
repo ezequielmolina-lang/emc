@@ -262,7 +262,7 @@ nav a.active {{ color: #F57B21; }}
   <div class="relative z-10 text-center px-6 max-w-sm w-full">
     <img src="{GALLITO_MINI}" alt="Gallito" class="h-16 w-auto mx-auto mb-6 drop-shadow-lg">
     <h1 class="font-display font-black text-2xl sm:text-3xl text-white mb-2">Eligiendo Mi Camino</h1>
-    <p class="text-white/30 text-xs mb-8">World Bank Group &bull; LAC Education</p>
+    <p class="text-white/30 text-xs mb-8">Programa Educativo &bull; Lima, Per&uacute;</p>
     <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
       <label class="block text-xs text-white/40 mb-3 font-semibold"><span data-lang-i="es">Ingresa la contrase&ntilde;a</span><span data-lang-i="en">Enter password</span></label>
       <div class="flex gap-2">
@@ -271,7 +271,7 @@ nav a.active {{ color: #F57B21; }}
       </div>
       <p id="pwErr" class="text-red-400 text-xs mt-3" style="display:none"><i class="fas fa-times-circle mr-1"></i><span data-lang-i="es">Contrase&ntilde;a incorrecta</span><span data-lang-i="en">Incorrect password</span></p>
     </div>
-    <p class="text-white/15 text-[10px] mt-6">&copy; 2026 World Bank Group</p>
+    <p class="text-white/15 text-[10px] mt-6">&copy; 2026 Eligiendo Mi Camino</p>
   </div>
 </div>
 
