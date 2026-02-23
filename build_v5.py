@@ -158,14 +158,12 @@ html[lang="es"] [data-lang-i="es"] {{ display: inline; }}
 #mainNav.nav-top span {{ color: #26282B !important; }}
 #mainNav.nav-top button {{ color: #26282B !important; }}
 #mainNav.nav-top .lang-btn {{ border-color: rgba(38,40,43,0.25) !important; }}
-#mainNav.nav-top .nav-toolkit {{ color: white !important; }}
 #mainNav.nav-scrolled {{ background: rgba(13,14,16,0.95) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important; }}
 #mainNav.nav-scrolled a {{ color: rgba(255,255,255,0.5) !important; }}
 #mainNav.nav-scrolled span {{ color: rgba(255,255,255,0.5) !important; }}
 #mainNav.nav-scrolled button {{ color: rgba(255,255,255,0.5) !important; }}
 #mainNav.nav-scrolled .nav-brand {{ color: rgba(255,255,255,0.9) !important; }}
 #mainNav.nav-scrolled .lang-btn {{ border-color: rgba(255,255,255,0.2) !important; }}
-#mainNav.nav-scrolled .nav-toolkit {{ color: white !important; }}
 #mainNav a:hover {{ color: #F57B21 !important; }}
 
 /* Scrollbar */
@@ -239,8 +237,6 @@ nav a.active {{ color: #F57B21; }}
   /* General padding adjustments */
   section {{ padding-top: 3rem; padding-bottom: 3rem; }}
   .section-title {{ font-size: 1.75rem !important; }}
-  /* Toolkit content grid */
-  .toolkit-grid {{ grid-template-columns: 1fr !important; }}
   /* Phone frame */
   .phone-frame {{ width: 200px; height: 400px; }}
   /* Fix overflow */
@@ -255,7 +251,47 @@ nav a.active {{ color: #F57B21; }}
 
 </style>
 </head>
-<body class="bg-dark-800 text-white overflow-x-hidden">
+<body class="bg-dark-800 text-white overflow-x-hidden overflow-y-hidden">
+
+<!-- ════════════ PASSWORD GATE ════════════ -->
+<div id="pwGate" class="fixed inset-0 z-[9999] flex items-center justify-center" style="background: linear-gradient(135deg, #26282B 0%, #16171A 100%);">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-[10%] left-[8%] w-[200px] h-[200px] rounded-full opacity-15" style="background: #F3E0C4;"></div>
+    <div class="absolute bottom-[15%] right-[10%] w-[150px] h-[150px] rounded-full opacity-10" style="background: #F57B21;"></div>
+  </div>
+  <div class="relative z-10 text-center px-6 max-w-sm w-full">
+    <img src="{GALLITO_MINI}" alt="Gallito" class="h-16 w-auto mx-auto mb-6 drop-shadow-lg">
+    <h1 class="font-display font-black text-2xl sm:text-3xl text-white mb-2">Eligiendo Mi Camino</h1>
+    <p class="text-white/30 text-xs mb-8">World Bank Group &bull; LAC Education</p>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+      <label class="block text-xs text-white/40 mb-3 font-semibold"><span data-lang-i="es">Ingresa la contrase&ntilde;a</span><span data-lang-i="en">Enter password</span></label>
+      <div class="flex gap-2">
+        <input id="pwInput" type="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" class="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent text-center text-sm" onkeypress="if(event.key==='Enter')unlockSite()">
+        <button onclick="unlockSite()" class="px-5 py-3 bg-brand-400 text-white font-display font-bold rounded-xl hover:bg-brand-500 transition-all duration-300 text-sm"><i class="fas fa-arrow-right"></i></button>
+      </div>
+      <p id="pwErr" class="text-red-400 text-xs mt-3" style="display:none"><i class="fas fa-times-circle mr-1"></i><span data-lang-i="es">Contrase&ntilde;a incorrecta</span><span data-lang-i="en">Incorrect password</span></p>
+    </div>
+    <p class="text-white/15 text-[10px] mt-6">&copy; 2026 World Bank Group</p>
+  </div>
+</div>
+
+<script>
+function unlockSite() {{
+  const pw = document.getElementById('pwInput').value.trim();
+  if (pw === 'EMC2026') {{
+    document.getElementById('pwGate').style.opacity = '0';
+    document.getElementById('pwGate').style.transition = 'opacity 0.5s ease';
+    document.body.classList.remove('overflow-y-hidden');
+    setTimeout(() => document.getElementById('pwGate').remove(), 500);
+    document.getElementById('pwErr').style.display = 'none';
+  }} else {{
+    document.getElementById('pwErr').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }}
+}}
+document.addEventListener('DOMContentLoaded', () => document.getElementById('pwInput').focus());
+</script>
 
 <script>
 // Language toggle
@@ -264,18 +300,6 @@ function toggleLang() {{
   const n = h.lang === 'es' ? 'en' : 'es';
   h.lang = n;
   document.querySelectorAll('.lang-btn').forEach(b => b.textContent = n === 'es' ? 'EN' : 'ES');
-}}
-// Toolkit code
-function checkCode() {{
-  const v = document.getElementById('codeInput').value.trim();
-  if (v === 'WB-TTL-2026') {{
-    document.getElementById('tkLock').style.display = 'none';
-    document.getElementById('tkContent').classList.remove('hidden');
-    document.getElementById('tkContent').classList.add('block');
-    document.getElementById('codeErr').style.display = 'none';
-  }} else {{
-    document.getElementById('codeErr').style.display = 'block';
-  }}
 }}
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {{
@@ -317,7 +341,6 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
       <a href="#math" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Tutor Matem&aacute;tica</span><span data-lang-i="en">Math Tutor</span></a>
       <a href="#coach" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Coach</span><span data-lang-i="en">Coach</span></a>
       <a href="#partners" class="hover:text-brand-400 transition-colors duration-300"><span data-lang-i="es">Socios</span><span data-lang-i="en">Partners</span></a>
-      <a href="#toolkit" class="nav-toolkit px-4 py-1.5 bg-brand-400 text-white rounded-full hover:bg-brand-500 transition-all duration-300 normal-case tracking-normal text-xs font-bold">Toolkit</a>
       <button onclick="toggleLang()" class="lang-btn w-8 h-8 border rounded-full text-[10px] font-bold hover:border-brand-400 hover:text-brand-400 transition-all duration-300">EN</button>
     </div>
     <button onclick="toggleMob()" class="md:hidden p-2 text-dark-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
@@ -327,7 +350,6 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
   <a href="#about" class="block py-2 text-sm font-semibold text-white/70" onclick="toggleMob()"><span data-lang-i="es">Programa</span><span data-lang-i="en">Program</span></a>
   <a href="#math" class="block py-2 text-sm font-semibold text-white/70" onclick="toggleMob()"><span data-lang-i="es">Tutor Matem&aacute;tica</span><span data-lang-i="en">Math Tutor</span></a>
   <a href="#coach" class="block py-2 text-sm font-semibold text-white/70" onclick="toggleMob()"><span data-lang-i="es">Coach Vocacional</span><span data-lang-i="en">Career Coach</span></a>
-  <a href="#toolkit" class="block py-2 text-sm font-bold text-brand-400" onclick="toggleMob()">Toolkit</a>
   <button onclick="toggleLang()" class="lang-btn px-3 py-1 border border-white/20 rounded-full text-xs font-bold text-white/50">EN</button>
 </div>
 </nav>
@@ -376,9 +398,6 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
         <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-12" style="animation: slide-up 0.7s ease-out 0.3s both;">
           <a href="#about" class="group relative px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-400 text-white rounded-2xl font-display font-bold text-sm overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(245,123,33,0.4)] hover:scale-[1.02] text-center">
             <span class="relative z-10"><span data-lang-i="es">Conocer el programa</span><span data-lang-i="en">Learn more</span></span>
-          </a>
-          <a href="#toolkit" class="px-6 sm:px-8 py-3.5 sm:py-4 bg-dark-500 text-white/80 rounded-2xl font-display font-bold text-sm transition-all duration-300 hover:bg-dark-400 text-center">
-            <span data-lang-i="es">Toolkit para replicar</span><span data-lang-i="en">Replication toolkit</span>
           </a>
         </div>
 
@@ -886,58 +905,6 @@ function toggleMob() {{ document.getElementById('mob').classList.toggle('hidden'
 </div>
 </section>
 
-<!-- ════════════ TOOLKIT ════════════ -->
-<section id="toolkit" class="py-24 bg-dark-800 text-white relative overflow-hidden">
-<div class="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-400/3 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-  <div class="text-center mb-14 reveal">
-    <div class="inline-flex items-center gap-2 bg-brand-400/10 border border-brand-400/20 px-5 py-2 rounded-full text-xs font-display font-bold text-brand-400 mb-5">
-      <i class="fas fa-lock"></i> World Bank TTL Exclusive
-    </div>
-    <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black"><span data-lang-i="es">Toolkit de Replicaci&oacute;n</span><span data-lang-i="en">Replication Toolkit</span></h2>
-    <p class="text-white/25 mt-4 max-w-xl mx-auto text-sm leading-relaxed"><span data-lang-i="es">Recursos para TTLs del Banco Mundial que desean replicar este programa en otros pa&iacute;ses.</span><span data-lang-i="en">Resources for World Bank TTLs seeking to replicate this program in other countries.</span></p>
-  </div>
-
-  <!-- Lock -->
-  <div id="tkLock" class="max-w-sm mx-auto mb-12 reveal">
-    <div class="glass rounded-3xl p-10 text-center border border-white/5">
-      <div class="w-16 h-16 bg-brand-400/10 rounded-2xl flex items-center justify-center mx-auto mb-5"><i class="fas fa-key text-brand-400 text-2xl"></i></div>
-      <label class="block text-xs text-white/30 mb-4 font-semibold"><span data-lang-i="es">Ingresa el c&oacute;digo de acceso</span><span data-lang-i="en">Enter access code</span></label>
-      <div class="flex gap-2">
-        <input id="codeInput" type="text" placeholder="WB-TTL-XXXX" class="flex-1 px-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/15 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent text-center font-mono text-lg tracking-[0.2em]" onkeypress="if(event.key==='Enter')checkCode()">
-        <button onclick="checkCode()" class="px-6 py-3.5 bg-brand-400 text-white font-display font-bold rounded-xl hover:bg-brand-500 transition-all duration-300 text-sm hover:shadow-lg hover:shadow-brand-400/20"><span data-lang-i="es">Entrar</span><span data-lang-i="en">Enter</span></button>
-      </div>
-      <p id="codeErr" class="text-red-400 text-xs mt-3" style="display:none"><i class="fas fa-times-circle mr-1"></i><span data-lang-i="es">C&oacute;digo incorrecto</span><span data-lang-i="en">Incorrect code</span></p>
-    </div>
-  </div>
-
-  <!-- Content (hidden) -->
-  <div id="tkContent" class="hidden max-w-5xl mx-auto">
-    <div class="glass rounded-3xl p-8 mb-8 border border-brand-400/10">
-      <h3 class="font-display text-xl font-bold gradient-text mb-2"><span data-lang-i="es">Bienvenido al Toolkit</span><span data-lang-i="en">Welcome to the Toolkit</span></h3>
-      <p class="text-white/40 text-sm"><span data-lang-i="es">Informaci&oacute;n t&eacute;cnica y operativa para adaptar "Eligiendo Mi Camino" a otro pa&iacute;s.</span><span data-lang-i="en">Technical and operational information to adapt "Eligiendo Mi Camino" to another country.</span></p>
-    </div>
-    <div class="grid lg:grid-cols-2 gap-5 mb-8">
-      <div class="glass rounded-2xl p-6 card-modern"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-brand-400/15 rounded-xl flex items-center justify-center text-brand-400 font-display font-black">1</div><h4 class="font-display font-bold">Localization</h4></div><div class="space-y-2.5 text-xs text-white/40"><p><strong class="text-white/70">Math Tutor:</strong> Replace curriculum diagnostics. Need ~4,000 items + knowledge graph.</p><p><strong class="text-white/70">Career Coach:</strong> Local labor data, education pathways, scholarship DB, RIASEC validation.</p><p><strong class="text-white/70">Cultural:</strong> Mascot/branding, family simulator, teen language adaptation.</p></div></div>
-      <div class="glass rounded-2xl p-6 card-modern"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-brand-400/15 rounded-xl flex items-center justify-center text-brand-400 font-display font-black">2</div><h4 class="font-display font-bold">Institutional Setup</h4></div><div class="space-y-2.5 text-xs text-white/40"><p><strong class="text-white/70">Ministry:</strong> Secure Education Ministry buy-in. Peru needed DRELM for curriculum alignment.</p><p><strong class="text-white/70">Partners:</strong> EdTech platform, AI provider, university for teacher training.</p><p><strong class="text-white/70">Pilot:</strong> Start 5-10 schools. Include diverse sample. Collect baseline data.</p></div></div>
-      <div class="glass rounded-2xl p-6 card-modern"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-brand-400/15 rounded-xl flex items-center justify-center text-brand-400 font-display font-black">3</div><h4 class="font-display font-bold">Technical Requirements</h4></div><div class="space-y-2.5 text-xs text-white/40"><p><strong class="text-white/70">Math:</strong> Diagnostic bank + knowledge graph + Socratic engine + retrieval practice.</p><p><strong class="text-white/70">Career:</strong> LLM with safety guardrails + RAG system + RIASEC + parent simulator.</p><p><strong class="text-white/70">Privacy:</strong> Student data (minors). Local data protection. No PII in AI prompts.</p></div></div>
-      <div class="glass rounded-2xl p-6 card-modern"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-brand-400/15 rounded-xl flex items-center justify-center text-brand-400 font-display font-black">4</div><h4 class="font-display font-bold">Timeline &amp; Budget</h4></div><div class="space-y-2.5 text-xs text-white/40"><p><strong class="text-white/70">Phase 1 (3mo):</strong> Design, stakeholder mapping, institutional agreements.</p><p><strong class="text-white/70">Phase 2 (4mo):</strong> Development, content, AI prompts, teacher training materials.</p><p><strong class="text-white/70">Phase 3 (3mo):</strong> Pilot 5-10 schools. Phase 4 (6mo+): Scale 50+ schools.</p></div></div>
-    </div>
-    <div class="glass rounded-3xl p-6 border border-brand-400/15">
-      <h3 class="font-display font-bold gradient-text text-sm mb-4"><i class="fas fa-lightbulb mr-2"></i>Key Lessons from Peru</h3>
-      <div class="grid sm:grid-cols-2 gap-3 text-xs text-white/40">
-        <p><strong class="text-white/70"><i class="fas fa-check text-brand-400 mr-1.5"></i>AI = facilitator, not advisor.</strong> AI must ONLY ask questions and present info.</p>
-        <p><strong class="text-white/70"><i class="fas fa-check text-brand-400 mr-1.5"></i>Include ALL pathways.</strong> 70% won't attend university. Treat all routes equally.</p>
-        <p><strong class="text-white/70"><i class="fas fa-check text-brand-400 mr-1.5"></i>Family matters.</strong> Parent opinion is #1 factor. Parent simulator was most valued.</p>
-        <p><strong class="text-white/70"><i class="fas fa-check text-brand-400 mr-1.5"></i>90-min sessions.</strong> Design sessions that fit local school schedules.</p>
-        <p><strong class="text-white/70"><i class="fas fa-check text-brand-400 mr-1.5"></i>Diagnose first, tutor second.</strong> Most AI tools fail without understanding the error.</p>
-        <p><strong class="text-white/70"><i class="fas fa-check text-brand-400 mr-1.5"></i>Onboarding = success.</strong> Teacher training quality correlates directly with adoption.</p>
-      </div>
-    </div>
-    <p class="text-center text-white/10 text-[10px] mt-8">Contact: project team through your World Bank regional office. Code: share only with authorized TTLs.</p>
-  </div>
-</div>
-</section>
 
 <!-- ════════════ FOOTER ════════════ -->
 <footer class="bg-dark-800 pt-8 pb-4 border-t border-white/5">
@@ -968,4 +935,3 @@ out = r'C:\Users\cosmo\Downloads\AI Career Coach\Website\index.html'
 with open(out, 'w', encoding='utf-8') as f:
     f.write(html)
 print(f'v5 written: {len(html):,} bytes')
-print(f'Toolkit code: WB-TTL-2026')
