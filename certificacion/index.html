@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso de Inducción a la Certificación — Eligiendo Mi Camino</title>
+<meta name="description" content="Curso asincrónico de inducción al proceso de certificación docente del programa Eligiendo Mi Camino. DRELM + Banco Mundial.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --primary:#f39300; --primary-dark:#f75a00; --primary-light:#fdd026;
+    --bg-cream:#fffbf0; --bg:#fffbf0; --surface:#FFFFFF; --border:#f0e8d8;
+    --text:#242c32; --text-dark:#242c32; --text-muted:#666;
+    --math-bg:#FFEBEE; --math-color:#C62828;
+    --ov-bg:#E8F5E9; --ov-color:#2E7D32;
+    --pip-bg:#E3F2FD; --pip-color:#1565C0;
+    --success:#2E7D32; --error:#C62828; --info:#1565C0; --warning:#F57C00;
+    --accent:#fdd026;
+    --shadow-sm:0 1px 4px rgba(0,0,0,.05);
+    --shadow:0 2px 12px rgba(0,0,0,.08);
+    --shadow-lg:0 10px 30px rgba(243,147,0,.15), 0 4px 12px rgba(0,0,0,.08);
+    --radius:12px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{color:var(--text-dark);font-family:'Montserrat',sans-serif;font-weight:700}
+
+  /* App layout */
+  .app{display:grid;grid-template-columns:320px 1fr;grid-template-rows:64px 1fr;grid-template-areas:"sidebar topbar" "sidebar main";min-height:100vh}
+  .topbar{grid-area:topbar;background:var(--surface);border-bottom:2px solid var(--primary-light);display:flex;align-items:center;padding:0 32px;gap:16px;position:sticky;top:0;z-index:10;box-shadow:var(--shadow-sm)}
+  .topbar-title{font-size:16px;font-weight:700;color:var(--text-dark)}
+  .progress-wrap{flex:1;max-width:400px;margin:0 16px}
+  .progress-text{font-size:12px;color:var(--text-muted);margin-bottom:4px;font-weight:500}
+  .progress-bar{height:8px;background:#f0e8d8;border-radius:4px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-dark));border-radius:4px;transition:width .4s ease}
+  .topbar-meta{font-size:13px;color:var(--text-muted);display:flex;gap:16px}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;font-size:22px;color:var(--primary)}
+
+  .sidebar{grid-area:sidebar;background:var(--surface);border-right:1px solid var(--border);padding:24px 16px;overflow-y:auto;position:sticky;top:0;height:100vh}
+  .brand{padding:0 12px 20px;border-bottom:2px solid var(--primary-light);margin-bottom:16px}
+  .brand-title{font-size:15px;font-weight:800;color:var(--primary);line-height:1.3}
+  .brand-sub{font-size:12px;color:var(--text-muted);margin-top:4px;font-weight:500}
+  .my-path{background:linear-gradient(135deg,#fffaeb 0%,#fff4d4 100%);border:2px solid var(--primary-light);border-radius:10px;padding:14px;margin:12px 0;font-size:12.5px}
+  .my-path-label{font-size:10.5px;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:4px}
+  .my-path-name{font-weight:700;color:var(--text-dark);font-size:13.5px;line-height:1.3}
+  .my-path-hours{margin-top:6px;font-weight:700;color:var(--primary-dark);font-size:14px}
+
+  .nav-list{list-style:none;padding:0;margin:0}
+  .nav-item{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;margin-bottom:2px;transition:all .15s;font-size:13.5px;font-weight:500}
+  .nav-item:hover{background:#fff8e1}
+  .nav-item.active{background:linear-gradient(90deg,#fff4d4 0%,#fffaeb 100%);border-left:3px solid var(--primary);padding-left:9px}
+  .nav-item.active .nav-title{color:var(--primary-dark);font-weight:700}
+  .nav-num{width:26px;height:26px;border-radius:50%;background:#f0e8d8;color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+  .nav-item.completed .nav-num{background:var(--success);color:white}
+  .nav-item.completed .nav-num::before{content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;font-size:11px}
+  .nav-item.completed .nav-num span{display:none}
+  .nav-item.active .nav-num{background:var(--primary);color:white}
+  .nav-item.active.completed .nav-num{background:var(--success)}
+  .nav-content{flex:1;min-width:0}
+  .nav-title{color:var(--text);line-height:1.3}
+  .nav-meta{font-size:10.5px;color:var(--text-muted);margin-top:2px}
+
+  .nav-section-title{font-size:10.5px;color:var(--primary-dark);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin:18px 12px 8px}
+
+  .main{grid-area:main;padding:40px 56px 80px;max-width:920px}
+  .module-header{margin-bottom:32px}
+  .module-eyebrow{color:var(--primary-light);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+  .module-title{font-size:32px;margin:0 0 8px;line-height:1.2}
+  .module-meta{color:var(--text-muted);font-size:14px}
+
+  .lesson{margin-bottom:28px}
+  .lesson p{margin:0 0 16px;font-size:16px}
+  .lesson h3{font-size:20px;margin:28px 0 12px}
+  .lesson h4{font-size:17px;margin:20px 0 8px}
+  .lesson ul,.lesson ol{padding-left:22px;margin:0 0 16px}
+  .lesson li{margin-bottom:6px}
+  .lesson strong{color:var(--primary)}
+
+  .info-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:20px 0;box-shadow:var(--shadow-sm)}
+  .info-card h4{margin:0 0 12px;color:var(--text-dark)}
+
+  .callout{border-radius:var(--radius);padding:16px 20px;margin:20px 0;border-left:4px solid}
+  .callout-info{background:var(--pip-bg);border-color:var(--pip-color)}
+  .callout-info strong{color:var(--pip-color)}
+  .callout-warning{background:#FFF8E1;border-color:var(--warning)}
+  .callout-warning strong{color:#E65100}
+  .callout-success{background:var(--ov-bg);border-color:var(--success)}
+  .callout-success strong{color:var(--ov-color)}
+  .callout-tip{background:#fff4d4;border-color:var(--primary)}
+  .callout-tip strong{color:var(--primary-dark)}
+  .callout p{margin:0;color:var(--text-dark)}
+  .callout-icon{font-size:20px;margin-right:6px}
+
+  table.data-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;background:var(--surface);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+  table.data-table th{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;padding:12px 14px;text-align:left;font-weight:700}
+  table.data-table td{padding:12px 14px;border-bottom:1px solid var(--border)}
+  table.data-table tr:last-child td{border-bottom:none}
+  table.data-table tr:nth-child(even){background:#fffaeb}
+
+  /* Module breakdown */
+  .module-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:8px}
+  .module-num-sm{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+  .module-info h5{margin:0 0 2px;font-size:14px;color:var(--text-dark);font-weight:700}
+  .module-info p{margin:0;font-size:12.5px;color:var(--text-muted)}
+  .module-hours{background:var(--primary-light);color:var(--text-dark);padding:5px 12px;border-radius:6px;font-size:13px;font-weight:700;white-space:nowrap}
+  .total-row{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-color:var(--primary-dark)}
+  .total-row .module-info h5{color:white}
+  .total-row .module-info p{color:rgba(255,255,255,.9)}
+  .total-row .module-hours{background:var(--primary-light);color:var(--text-dark)}
+
+  /* Quiz */
+  .quiz{background:linear-gradient(135deg,#fffaeb 0%,#FFF 100%);border:2px solid var(--primary-light);border-radius:var(--radius);padding:28px;margin:32px 0 24px;box-shadow:var(--shadow-sm)}
+  .quiz-header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .quiz-badge{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;padding:5px 14px;border-radius:999px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .quiz h3{margin:0;font-size:19px}
+  .quiz-question{font-size:16px;font-weight:600;margin:16px 0 14px;color:var(--text)}
+  .quiz-options{display:grid;gap:10px;margin-bottom:16px}
+  .quiz-option{background:white;border:2px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s;font-size:15px;text-align:left;display:flex;align-items:center;gap:12px;width:100%;font-family:inherit;color:var(--text);font-weight:500}
+  .quiz-option:hover:not(:disabled){border-color:var(--primary);background:#fffaeb;transform:translateX(2px)}
+  .quiz-option:disabled{cursor:default}
+  .quiz-option .option-letter{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--text-muted);flex-shrink:0;background:#fffaeb}
+  .quiz-option.correct{border-color:var(--success);background:var(--ov-bg)}
+  .quiz-option.correct .option-letter{background:var(--success);color:white;border-color:var(--success)}
+  .quiz-option.incorrect{border-color:var(--error);background:var(--math-bg)}
+  .quiz-option.incorrect .option-letter{background:var(--error);color:white;border-color:var(--error)}
+  .quiz-feedback{padding:14px 16px;border-radius:10px;margin-top:12px;font-size:14.5px;display:none}
+  .quiz-feedback.show{display:block}
+  .quiz-feedback.correct{background:var(--ov-bg);border-left:4px solid var(--success);color:#1B5E20}
+  .quiz-feedback.incorrect{background:var(--math-bg);border-left:4px solid var(--error);color:#B71C1C}
+
+  .btn{display:inline-block;padding:13px 28px;border-radius:999px;font-weight:700;cursor:pointer;border:none;font-size:14.5px;transition:all .2s;text-decoration:none;font-family:inherit;letter-spacing:.3px}
+  .btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;box-shadow:0 4px 12px rgba(243,147,0,.25)}
+  .btn-primary:hover:not(:disabled){background:linear-gradient(135deg,var(--primary-dark),var(--primary))}
+  .btn-secondary{background:white;color:var(--primary-dark);border:2px solid var(--primary-light)}
+  .btn-secondary:hover:not(:disabled){background:#fffaeb}
+  .btn-accent{background:var(--primary-light);color:var(--text-dark)}
+  .btn-block{width:100%;padding:14px}
+
+  .nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);gap:12px;flex-wrap:wrap}
+
+  /* FAQ */
+  .faq details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px;box-shadow:var(--shadow-sm)}
+  .faq details[open]{border-color:var(--primary-light);background:#fffaeb}
+  .faq summary{cursor:pointer;font-weight:700;color:var(--text-dark);list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:15.5px;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';font-size:22px;color:var(--primary-light);transition:transform .2s;flex-shrink:0}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{margin:12px 0 0;font-size:14.5px}
+
+  /* Final quiz */
+  .quiz-progress{background:#f0e8d8;border-radius:4px;height:6px;overflow:hidden;margin:0 0 24px}
+  .quiz-progress-fill{background:linear-gradient(90deg,var(--primary),var(--primary-dark));height:100%;transition:width .3s}
+
+  /* Certificate */
+  .certificate{background:linear-gradient(135deg,#FFFEF5 0%,#FFF 100%);border:8px double var(--primary);padding:50px 32px;text-align:center;border-radius:var(--radius);margin:30px 0;box-shadow:var(--shadow-lg);position:relative}
+  .certificate::before{content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:6px;background:linear-gradient(90deg,var(--primary-light),var(--primary),var(--primary-dark));border-radius:var(--radius) var(--radius) 0 0}
+  .cert-icon{font-size:54px;margin-bottom:14px;color:var(--primary)}
+  .cert-title{font-size:30px;color:var(--primary-dark);margin:0 0 4px}
+  .cert-subtitle{color:var(--text-muted);font-size:14px;font-weight:600}
+  .cert-name{font-size:26px;font-weight:800;color:var(--text-dark);margin:26px 0 8px;font-family:'Montserrat',serif}
+  .cert-body{font-size:15.5px;max-width:500px;margin:0 auto;line-height:1.7}
+  .cert-seal{margin-top:26px;padding-top:18px;border-top:2px solid var(--primary-light);font-size:13px;color:var(--text-muted)}
+
+  /* Welcome / intake */
+  .welcome-overlay{position:fixed;inset:0;background:linear-gradient(135deg,rgba(243,147,0,.85) 0%,rgba(247,90,0,.9) 100%);display:flex;align-items:center;justify-content:center;z-index:100;backdrop-filter:blur(4px);padding:20px;overflow-y:auto}
+  .welcome-modal{background:white;border-radius:var(--radius);padding:40px 36px;max-width:580px;width:100%;text-align:center;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto;position:relative}
+  .welcome-modal::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--primary-light),var(--primary),var(--primary-dark));border-radius:var(--radius) var(--radius) 0 0}
+  .welcome-modal h2{font-size:24px;margin:0 0 12px}
+  .welcome-modal>p{font-size:15px;color:var(--text-muted);margin:0 0 22px}
+  .welcome-modal .stat-row{display:flex;justify-content:center;gap:24px;margin:24px 0}
+  .welcome-modal .stat-block{text-align:center}
+  .welcome-modal .stat-block-num{font-size:28px;font-weight:800;color:var(--primary-dark)}
+  .welcome-modal .stat-block-label{font-size:11.5px;color:var(--text-muted);text-transform:uppercase;font-weight:600}
+
+  .intake-step{text-align:left}
+  .intake-step h3{font-size:19px;margin:0 0 6px;color:var(--text-dark)}
+  .intake-step .step-hint{color:var(--text-muted);font-size:13.5px;margin-bottom:18px}
+  .intake-options{display:grid;gap:10px;margin-bottom:20px}
+  .intake-option{background:white;border:2px solid var(--border);border-radius:12px;padding:16px 18px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:14px;font-size:15px;width:100%;transition:all .2s;font-family:inherit}
+  .intake-option:hover{border-color:var(--primary);background:#fffaeb;transform:translateX(2px)}
+  .intake-option.selected{border-color:var(--primary);background:linear-gradient(135deg,#fffaeb 0%,#FFF 100%);box-shadow:var(--shadow-sm)}
+  .intake-icon{font-size:24px;width:40px;height:40px;background:#fff4d4;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .intake-option-text{flex:1}
+  .intake-option-title{font-weight:700;color:var(--text-dark);font-size:15.5px}
+  .intake-option-desc{color:var(--text-muted);font-size:13px;margin-top:2px;font-weight:500}
+  .intake-input{width:100%;padding:12px 14px;border:2px solid var(--border);border-radius:10px;font-size:15px;font-family:inherit;margin-bottom:18px}
+  .intake-input:focus{outline:none;border-color:var(--primary)}
+  .intake-progress{display:flex;gap:6px;justify-content:center;margin-bottom:24px}
+  .intake-dot{width:8px;height:8px;border-radius:50%;background:#f0e8d8;transition:all .3s}
+  .intake-dot.active{background:var(--primary);width:24px;border-radius:4px}
+  .intake-dot.done{background:var(--success)}
+
+  .result-card{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;padding:32px;border-radius:var(--radius);margin:20px 0;text-align:left;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .result-card::after{content:'';position:absolute;top:-50%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(253,208,38,.25) 0%,transparent 70%);pointer-events:none}
+  .result-card .result-tag{display:inline-block;background:var(--primary-light);color:var(--primary-dark);padding:5px 14px;border-radius:999px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;position:relative;z-index:1}
+  .result-card h3{color:white;font-size:23px;margin:0 0 4px;position:relative;z-index:1}
+  .result-card .result-sub{font-size:14px;opacity:.92;font-weight:500;position:relative;z-index:1}
+  .result-card .result-hours{font-size:54px;font-weight:800;color:var(--primary-light);line-height:1;margin:18px 0 6px;position:relative;z-index:1}
+  .result-card .result-hours-label{font-size:12px;opacity:.85;text-transform:uppercase;letter-spacing:.5px;position:relative;z-index:1;font-weight:600}
+
+  /* Welcome hero */
+  .welcome-hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:white;padding:36px 32px;border-radius:var(--radius);margin-bottom:28px;position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .welcome-hero::after{content:'';position:absolute;top:-50%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(253,208,38,.2) 0%,transparent 70%);pointer-events:none}
+  .welcome-hero h2{color:white;margin:0 0 10px;font-size:28px;font-weight:800;position:relative;z-index:1}
+  .welcome-hero p{font-size:16px;opacity:.95;margin:0;font-weight:500;position:relative;z-index:1}
+  .welcome-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;position:relative;z-index:1}
+  .stat{background:rgba(255,255,255,.15);border-radius:10px;padding:12px;text-align:center;backdrop-filter:blur(4px)}
+  .stat-num{font-size:24px;font-weight:800;color:var(--primary-light)}
+  .stat-label{font-size:11.5px;opacity:.95;text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+
+  /* Downloads */
+  .download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:22px 0}
+  .download-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;align-items:flex-start;gap:14px;transition:all .2s;box-shadow:var(--shadow-sm)}
+  .download-card:hover{border-color:var(--primary);box-shadow:var(--shadow);transform:translateY(-2px)}
+  .download-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;font-weight:700}
+  .download-icon.xlsx{background:linear-gradient(135deg,#2E7D32,#1B5E20)}
+  .download-info{flex:1;min-width:0}
+  .download-info h4{margin:0 0 4px;font-size:14.5px;line-height:1.3;color:var(--text-dark)}
+  .download-info p{margin:0;font-size:12.5px;color:var(--text-muted)}
+  .download-link{display:inline-block;color:var(--primary-dark);font-weight:700;font-size:13px;margin-top:8px;text-decoration:none;background:#fffaeb;padding:4px 12px;border-radius:6px;border:1px solid var(--primary-light)}
+  .download-link:hover{background:var(--primary-light);color:var(--text-dark)}
+  .download-card.recommended{border-color:var(--primary);background:linear-gradient(135deg,#fffaeb 0%,#FFF 100%);box-shadow:0 4px 16px rgba(243,147,0,.15)}
+  .recommended-badge{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;margin-left:6px;vertical-align:middle;text-transform:uppercase;letter-spacing:.5px}
+
+  @media (max-width:900px){
+    .app{grid-template-columns:1fr;grid-template-areas:"topbar" "main"}
+    .sidebar{position:fixed;top:64px;left:0;width:280px;height:calc(100vh - 64px);transform:translateX(-100%);transition:transform .3s;z-index:9;box-shadow:var(--shadow-lg)}
+    .sidebar.open{transform:translateX(0)}
+    .menu-btn{display:block}
+    .main{padding:24px 20px 60px}
+    .module-title{font-size:24px}
+    .topbar{padding:0 16px}
+    .topbar-meta{display:none}
+    .welcome-modal{padding:28px 22px}
+  }
+  .hidden{display:none!important}
+  @media print{.sidebar,.topbar,.nav-buttons,.btn{display:none!important}.app{display:block}.main{padding:20px}}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-title">Eligiendo Mi Camino</div>
+      <div class="brand-sub">Inducción a la certificación</div>
+    </div>
+    <div id="myPathBox"></div>
+    <ul class="nav-list" id="navList"></ul>
+  </aside>
+
+  <header class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <div class="topbar-title" id="topbarTitle">Cargando…</div>
+    <div class="progress-wrap">
+      <div class="progress-text" id="progressText">0% completado</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="topbar-meta"><span>📅 Mayo–Julio 2026</span></div>
+  </header>
+
+  <main class="main" id="main"></main>
+</div>
+
+<div class="welcome-overlay" id="welcomeOverlay">
+  <div class="welcome-modal" id="welcomeModalContent"></div>
+</div>
+
+<script>
+// ============================================================================
+// CERTIFICATION PATHS
+// ============================================================================
+const PATHS = {
+  'mat-80': {
+    icon: '📐',
+    name: 'Sílabo 80h: Tutor de IA de Matemáticas',
+    shortName: 'Matemáticas (1 sec.) — 80h',
+    hours: '80',
+    type: 'Sílabo (curso)',
+    sections: '1 sección',
+    competencias: 'MBDD 2, 4, 5, 8',
+    silabo: 'Silabo_80h_Matematica_v6.docx',
+    excel: 'Certificacion_80h_Matematica.xlsx',
+    productKey: 'sesiones de aprendizaje (Matemáticas)',
+    productDetail: 'Diseñas sesiones de aprendizaje para las clases en laboratorio (con uso del Tutor IA) y, opcionalmente, para actividades de refuerzo en el aula tradicional. Cada sesión documenta el protocolo de inicio, monitoreo y cierre de la sesión en laboratorio, basado en datos del dashboard.',
+    productHours: 9,
+    perfHours: 8,
+    labHours: '38h (10h fase anticipada + 28h supervisión semanal)',
+    expectedLabSessions: 16,
+    minLabSessions: 11,
+    expectedDocs: 8,
+    minDocs: 5,
+    docsLabel: 'sesiones de aprendizaje',
+    productsList: [
+      {label:'Curso de perfeccionamiento docente (NUEVO)', detail:'asincrónico en eligiendomicamino.org. Es un curso nuevo, distinto al de capacitación inicial de 16h que ya hiciste en marzo.', hours:'8h', auto:true},
+      {label:'Sesiones de aprendizaje', detail:'8 sesiones esperadas (mínimo 5 para aprobar)', hours:'9h', auto:false},
+      {label:'Demostración práctica', detail:'1 video o audio de una sesión, 15–45 min', hours:'6h', auto:false},
+      {label:'Feedback al programa', detail:'Anexo 3 — encuesta de retroalimentación', hours:'2h', auto:false}
+    ],
+    moduleList: [
+      {n:1, name:'Inducción al curso (asincrónico)', desc:'En eligiendomicamino.org', h:'3 h'},
+      {n:2, name:'Implementación en laboratorio', desc:'Supervisión semanal del Tutor IA', h:'38 h'},
+      {n:3, name:'Curso de perfeccionamiento docente (NUEVO)', desc:'Sesiones asincrónicas en eligiendomicamino.org — curso nuevo, distinto a la capacitación inicial de 16h', h:'8 h'},
+      {n:4, name:'Acompañamiento pedagógico', desc:'3 llamadas mensuales con EMC', h:'4 h'},
+      {n:5, name:'Sesiones de aprendizaje', desc:'Diseño de sesiones con y sin plataforma', h:'9 h'},
+      {n:6, name:'Demostración práctica', desc:'Video o audio de implementación', h:'6 h'},
+      {n:7, name:'Apoyo a evaluaciones IPA', desc:'Línea base, media, final + encuestas', h:'10 h'},
+      {n:8, name:'Feedback al programa', desc:'Encuesta estructurada (Anexo 3)', h:'2 h'}
+    ]
+  },
+  'tut-80': {
+    icon: '🧭',
+    name: 'Sílabo 80h: Orientador Vocacional',
+    shortName: 'Orientación Vocacional (1 sec.) — 80h',
+    hours: '80',
+    type: 'Sílabo (curso)',
+    sections: '1 sección',
+    competencias: 'MBDD 3, 5, 6, 9',
+    silabo: 'Silabo_80h_Tutores_OV_v6.docx',
+    excel: 'Certificacion_80h_Tutores_OV.xlsx',
+    productKey: 'sesiones de aprendizaje OV (hasta 12, una por cada sesión OV)',
+    productDetail: 'Diseñas sesiones de aprendizaje para el Orientador Vocacional, adaptadas al contexto de tu sección. Cada sesión incluye objetivo, actividades previas, protocolo de acompañamiento, cierre y reflexión. El programa OV tiene 12 sesiones; entregas las que efectivamente facilitas.',
+    productHours: 19,
+    perfHours: 12,
+    labHours: '24h (6h fase anticipada + 18h sesiones OV 4-12)',
+    expectedLabSessions: 12,
+    minLabSessions: 8,
+    expectedDocs: 8,
+    minDocs: 5,
+    docsLabel: 'sesiones de aprendizaje OV',
+    productsList: [
+      {label:'Curso de perfeccionamiento docente (NUEVO)', detail:'asincrónico en eligiendomicamino.org. Es un curso nuevo, distinto al de capacitación inicial de 16h que ya hiciste en marzo.', hours:'12h', auto:true},
+      {label:'Sesiones de aprendizaje OV', detail:'8 sesiones esperadas (mínimo 5 para aprobar)', hours:'19h', auto:false},
+      {label:'Demostración práctica', detail:'1 video o audio de una sesión OV, 15–45 min', hours:'6h', auto:false},
+      {label:'Feedback al programa', detail:'Anexo 3 — encuesta de retroalimentación', hours:'2h', auto:false}
+    ],
+    moduleList: [
+      {n:1, name:'Inducción al curso (asincrónico)', desc:'En eligiendomicamino.org', h:'3 h'},
+      {n:2, name:'Implementación: 12 sesiones OV', desc:'Facilitación de sesiones OV 1-12', h:'24 h'},
+      {n:3, name:'Curso de perfeccionamiento docente (NUEVO)', desc:'Técnicas de OV, manejo de sesgos, acompañamiento socioemocional — curso nuevo, distinto a la capacitación inicial', h:'12 h'},
+      {n:4, name:'Acompañamiento pedagógico', desc:'3 llamadas mensuales con EMC', h:'4 h'},
+      {n:5, name:'12 sesiones de aprendizaje', desc:'Una por cada sesión OV', h:'19 h'},
+      {n:6, name:'Demostración práctica', desc:'Video o audio de sesión OV', h:'6 h'},
+      {n:7, name:'Apoyo a evaluaciones IPA', desc:'Línea base, media, final + encuestas', h:'10 h'},
+      {n:8, name:'Feedback al programa', desc:'Encuesta estructurada (Anexo 3)', h:'2 h'}
+    ]
+  },
+  'mat-120': {
+    icon: '📐',
+    name: 'Plan de Estudios 120h: Tutor de IA de Matemáticas (2+ secciones)',
+    shortName: 'Matemáticas (2+ sec.) — 120h',
+    hours: '120',
+    type: 'Plan de Estudios (programa)',
+    sections: '2+ secciones',
+    competencias: 'MBDD 2, 4, 5, 8',
+    silabo: 'Plan_Estudios_120h_Matematica_v3.docx',
+    excel: 'Certificacion_120h_Matematica.xlsx',
+    productKey: 'sesiones de aprendizaje',
+    productDetail: 'Diseñas sesiones de aprendizaje para las clases en laboratorio. Las planificaciones son únicas (no se duplican por sección): documentas el protocolo de inicio, monitoreo y cierre de la sesión en laboratorio.',
+    productHours: 11,
+    perfHours: 8,
+    labHours: '76h (16h fase anticipada + 60h supervisión 2 secciones)',
+    expectedLabSessions: 32,
+    minLabSessions: 22,
+    expectedDocs: 8,
+    minDocs: 5,
+    docsLabel: 'sesiones de aprendizaje',
+    productsList: [
+      {label:'Curso de perfeccionamiento docente (NUEVO)', detail:'asincrónico en eligiendomicamino.org. Es un curso nuevo, distinto al de capacitación inicial de 16h que ya hiciste en marzo.', hours:'8h', auto:true},
+      {label:'Sesiones de aprendizaje', detail:'8 sesiones esperadas (mínimo 5 para aprobar)', hours:'11h', auto:false},
+      {label:'Demostración práctica', detail:'1 video o audio de una sesión, 15–45 min', hours:'6h', auto:false},
+      {label:'Feedback al programa', detail:'Anexo 3 — encuesta de retroalimentación', hours:'2h', auto:false}
+    ],
+    moduleList: [
+      {n:1, name:'Inducción al curso (asincrónico)', desc:'En eligiendomicamino.org', h:'3 h'},
+      {n:2, name:'Implementación en laboratorio', desc:'Supervisión semanal en 2+ secciones', h:'76 h'},
+      {n:3, name:'Curso de perfeccionamiento docente (NUEVO)', desc:'Sesiones asincrónicas en eligiendomicamino.org — curso nuevo, distinto a la capacitación inicial de 16h', h:'8 h'},
+      {n:4, name:'Acompañamiento pedagógico', desc:'3 llamadas mensuales con EMC', h:'4 h'},
+      {n:5, name:'Sesiones de aprendizaje', desc:'Diseño de sesiones', h:'11 h'},
+      {n:6, name:'Demostración práctica', desc:'Video o audio de implementación', h:'6 h'},
+      {n:7, name:'Apoyo a evaluaciones IPA', desc:'Línea base, media, final + encuestas', h:'10 h'},
+      {n:8, name:'Feedback al programa', desc:'Encuesta estructurada (Anexo 3)', h:'2 h'}
+    ]
+  },
+  'tut-120': {
+    icon: '🧭',
+    name: 'Plan de Estudios 120h: Orientador Vocacional (2+ secciones)',
+    shortName: 'Orientación Vocacional (2+ sec.) — 120h',
+    hours: '120',
+    type: 'Plan de Estudios (programa)',
+    sections: '2+ secciones',
+    competencias: 'MBDD 3, 5, 6, 9',
+    silabo: 'Plan_Estudios_120h_Tutores_OV_v3.docx',
+    excel: 'Certificacion_120h_Tutores_OV.xlsx',
+    productKey: 'sesiones de aprendizaje OV + sesiones complementarias',
+    productDetail: 'Diseñas las sesiones de aprendizaje OV (planificaciones únicas, no duplicadas por sección) y además realizas actividades complementarias y apoyo individual a estudiantes (seguimiento del proceso vocacional, apoyo en investigación de carreras, conversaciones con familias).',
+    productHours: 35,
+    perfHours: 12,
+    labHours: '48h (12h fase anticipada + 36h sesiones OV en 2 secciones)',
+    expectedLabSessions: 24,
+    minLabSessions: 17,
+    expectedDocs: 8,
+    minDocs: 5,
+    docsLabel: 'sesiones de aprendizaje OV',
+    productsList: [
+      {label:'Curso de perfeccionamiento docente (NUEVO)', detail:'asincrónico en eligiendomicamino.org. Es un curso nuevo, distinto al de capacitación inicial de 16h que ya hiciste en marzo.', hours:'12h', auto:true},
+      {label:'Sesiones de aprendizaje OV', detail:'8 sesiones esperadas (mínimo 5 para aprobar)', hours:'19h', auto:false},
+      {label:'Sesiones complementarias y apoyo', detail:'Seguimiento individual, investigación de carreras, conversaciones con familias', hours:'16h', auto:false},
+      {label:'Demostración práctica', detail:'1 video o audio de una sesión OV, 15–45 min', hours:'6h', auto:false},
+      {label:'Feedback al programa', detail:'Anexo 3 — encuesta de retroalimentación', hours:'2h', auto:false}
+    ],
+    moduleList: [
+      {n:1, name:'Inducción al curso (asincrónico)', desc:'En eligiendomicamino.org', h:'3 h'},
+      {n:2, name:'Implementación: 12 sesiones OV × 2 secciones', desc:'Facilitación en 2 secciones', h:'48 h'},
+      {n:3, name:'Curso de perfeccionamiento docente (NUEVO)', desc:'Técnicas de OV, sesgos, acompañamiento — curso nuevo, distinto a la capacitación inicial', h:'12 h'},
+      {n:4, name:'Acompañamiento pedagógico', desc:'3 llamadas mensuales con EMC', h:'4 h'},
+      {n:5, name:'12 sesiones de aprendizaje', desc:'Una por cada sesión OV', h:'19 h'},
+      {n:6, name:'Sesiones complementarias y apoyo', desc:'Seguimiento individual, investigación de carreras, conversaciones con familias', h:'16 h'},
+      {n:7, name:'Demostración práctica', desc:'Video o audio de sesión OV', h:'6 h'},
+      {n:8, name:'Apoyo a evaluaciones IPA', desc:'Línea base, media, final + encuestas', h:'10 h'},
+      {n:9, name:'Feedback al programa', desc:'Encuesta estructurada (Anexo 3)', h:'2 h'}
+    ]
+  },
+  'aip-120': {
+    icon: '🛠️',
+    name: 'Plan de Estudios 120h: Coordinación y Soporte Técnico (AIP/PIP)',
+    shortName: 'Coordinador AIP/PIP — 120h',
+    hours: '120',
+    type: 'Plan de Estudios (programa)',
+    sections: 'Todas las secciones',
+    competencias: 'MBDD 6, 7, 8',
+    silabo: 'Plan_Estudios_120h_Coordinadores_AIP_v3.docx',
+    excel: 'Certificacion_120h_Coordinadores_AIP.xlsx',
+    productKey: 'protocolos de soporte técnico + apoyo a docentes en grabaciones',
+    productDetail: 'En lugar de hacer tu propia demostración, apoyas a los docentes para que puedan grabar sus evidencias audiovisuales. También documentas protocolos de soporte técnico (conectividad, accesos, equipos, escalamiento al equipo EMC).',
+    productHours: 13,
+    perfHours: 0,
+    labHours: '90h soporte integral a todas las secciones (Mat + OV)',
+    isAIP: true,
+    expectedLabSessions: null,
+    minLabSessions: null,
+    labPercentTarget: '≥ 75% de las sesiones del programa en tu IE',
+    expectedDocs: 5,
+    minDocs: 4,
+    docsLabel: 'protocolos de soporte técnico',
+    productsList: [
+      {label:'Protocolos de soporte técnico', detail:'5 protocolos esperados (mínimo 4 para aprobar): conectividad, accesos/contraseñas, equipos, evaluaciones, escalamiento', hours:'5h', auto:false},
+      {label:'Apoyo a docentes en grabación', detail:'Coordinación + asistencia técnica durante las grabaciones de los docentes', hours:'8h', auto:false},
+      {label:'Feedback al programa', detail:'Anexo 3 — encuesta de retroalimentación', hours:'2h', auto:false}
+    ],
+    moduleList: [
+      {n:1, name:'Inducción al curso (asincrónico)', desc:'En eligiendomicamino.org', h:'3 h'},
+      {n:2, name:'Soporte técnico en laboratorio', desc:'Soporte integral a todas las secciones', h:'90 h'},
+      {n:3, name:'Acompañamiento pedagógico', desc:'3 llamadas mensuales con EMC', h:'4 h'},
+      {n:4, name:'Protocolos de soporte técnico', desc:'Documentación de procedimientos', h:'5 h'},
+      {n:5, name:'Apoyo a docentes en grabación de evidencia', desc:'Coordinación y apoyo logístico', h:'8 h'},
+      {n:6, name:'Apoyo a evaluaciones IPA', desc:'Soporte técnico durante evaluaciones', h:'8 h'},
+      {n:7, name:'Feedback al programa', desc:'Encuesta estructurada (Anexo 3)', h:'2 h'}
+    ]
+  }
+};
+
+function getPath(key) { return PATHS[key]; }
+
+// ============================================================================
+// MODULE CONTENT (with path-specific dynamic content)
+// ============================================================================
+function buildModules(pathKey) {
+  const p = pathKey ? getPath(pathKey) : null;
+
+  return [
+    {
+      id: 'bienvenida',
+      title: 'Bienvenida y contexto',
+      eyebrow: 'Módulo 1 de 9',
+      duration: '~3 min',
+      content: () => `
+        <div class="welcome-hero">
+          <h2>¡Bienvenido al programa Eligiendo Mi Camino!</h2>
+          <p>Esta inducción te explicará todo lo que necesitas saber sobre tu certificación: cuál te corresponde, cómo se evalúa, qué debes entregar y cuándo. <strong>Completarla suma a tu nota</strong> (componente Acompañamiento, 20%).</p>
+          <div class="welcome-stats">
+            <div class="stat"><div class="stat-num">88</div><div class="stat-label">IIEE Lima</div></div>
+            <div class="stat"><div class="stat-num">5to</div><div class="stat-label">Año secundaria</div></div>
+            <div class="stat"><div class="stat-num">2026</div><div class="stat-label">Semestre</div></div>
+          </div>
+        </div>
+        <div class="lesson">
+          <h3>¿Qué es Eligiendo Mi Camino?</h3>
+          <p>Es una iniciativa conjunta de la <strong>DRELM</strong> (Dirección Regional de Educación de Lima Metropolitana) y el <strong>Banco Mundial</strong>, con apoyo técnico de <strong>uDocz</strong> y la <strong>UPC</strong>. El programa atiende a estudiantes de 5to año de secundaria de 88 instituciones educativas públicas de Lima Metropolitana e integra:</p>
+          <ul>
+            <li>Un <strong>Tutor de Matemáticas con IA</strong> que apoya el aprendizaje adaptativo en el laboratorio.</li>
+            <li>Un <strong>Orientador Vocacional con IA</strong> que acompaña a los estudiantes en 8 pasos y 12 sesiones.</li>
+          </ul>
+          <h3>¿Por qué esta certificación es importante?</h3>
+          <ul>
+            <li>Es emitida por la DRELM en convenio con el Banco Mundial.</li>
+            <li>Es válida para tu <strong>escalafón magisterial</strong> mediante el <strong>POK</strong> — Portal de Oferta Formativa de Calidad del MINEDU.</li>
+            <li>Reconoce tu trabajo activo durante el primer semestre 2026.</li>
+            <li>Es <strong>separada</strong> de la certificación de 16h presencial que ya recibiste en marzo (capacitación inicial). Las dos suman a tu escalafón.</li>
+          </ul>
+          <div class="callout callout-tip"><p><span class="callout-icon">💡</span><strong>Buena noticia:</strong> La mayor parte de las evidencias se recopilan automáticamente. Tu carga administrativa es mínima.</p></div>
+          <div class="callout callout-info"><p><span class="callout-icon">📐</span><strong>El sistema te da margen.</strong> No necesitas hacer el 100% de cada cosa para certificarte: los mínimos están en aproximadamente 70% por componente. Si pierdes algunas semanas por imprevistos del calendario (Semana Santa, gestión, elecciones, enfermedad), igual puedes aprobar.</p></div>
+        </div>
+      `,
+      quiz: {
+        question: '¿Quiénes avalan la certificación del programa?',
+        options: ['Solo la UPC','DRELM y Banco Mundial','El MINEDU directamente','uDocz como empresa privada'],
+        correct: 1,
+        feedback: {
+          correct: 'Exacto. La certificación es emitida por la DRELM en convenio con el Banco Mundial, válida para escalafón magisterial (POK).',
+          incorrect: 'Recuerda: la certificación es emitida por la <strong>DRELM en convenio con el Banco Mundial</strong>. uDocz y UPC son apoyo técnico, pero la certificación oficial es DRELM/BM.'
+        }
+      }
+    },
+
+    {
+      id: 'tu-certificacion',
+      title: 'Tu certificación',
+      eyebrow: 'Módulo 2 de 9',
+      duration: '~5 min',
+      content: () => {
+        const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+        if (keys.length === 0) return '<p>Por favor completa primero el cuestionario inicial.</p>';
+        const isMulti = keys.length > 1;
+        let allHtml = '';
+        keys.forEach(function(k, idx) {
+          const cp = getPath(k);
+          const moduleListHtml = cp.moduleList.map(function(m) {
+            return `<div class="module-row">
+              <div class="module-num-sm">${m.n}</div>
+              <div class="module-info"><h5>${m.name}</h5><p>${m.desc}</p></div>
+              <span class="module-hours">${m.h}</span>
+            </div>`;
+          }).join('') + `<div class="module-row total-row">
+            <div class="module-num-sm" style="background:var(--primary-light);color:var(--text-dark)">∑</div>
+            <div class="module-info"><h5>TOTAL</h5><p>Horas pedagógicas certificadas por DRELM y Banco Mundial</p></div>
+            <span class="module-hours">${cp.hours} h</span>
+          </div>`;
+          allHtml += `
+            <div class="result-card" style="margin-bottom:12px;">
+              <span class="result-tag">${isMulti ? 'Certificación ' + (idx+1) + ' de ' + keys.length : 'Tu plan'}</span>
+              <h3>${cp.icon} ${cp.name}</h3>
+              <p class="result-sub">${cp.type} · ${cp.sections}</p>
+              <div class="result-hours">${cp.hours}<span style="font-size:24px;"> h</span></div>
+              <div class="result-hours-label">Horas pedagógicas</div>
+            </div>
+            <div class="lesson" style="margin-bottom:24px;">
+              <h4 style="margin-top:14px;">Estructura de módulos — ${cp.shortName}</h4>
+              <div class="module-list">${moduleListHtml}</div>
+              <p style="margin-top:8px;"><strong>Competencias MBDD:</strong> ${cp.competencias}</p>
+            </div>
+          `;
+        });
+        const introNote = isMulti ?
+          `<div class="callout callout-tip"><p><span class="callout-icon">💡</span><strong>Tienes ${keys.length} certificaciones</strong> porque cumples ${keys.length} roles distintos en el programa. Cada certificación es independiente y tiene su propio sílabo/plan de estudios. <strong>Las descargas de los ${keys.length} documentos están al final del curso.</strong></p></div>`
+          : '';
+        // Build inline downloads preview (so docente can grab the silabo from the start)
+        let docsPreview = '';
+        keys.forEach(function(k) {
+          const p = getPath(k);
+          const docTypeLabel = p.hours === '120' ? 'Plan de estudios de 120h' : 'Sílabo de 80h';
+          docsPreview += `<div style="display:flex;align-items:center;gap:14px;padding:14px 16px;background:#fffaeb;border:1px solid var(--primary-light);border-radius:10px;margin-bottom:10px;">
+            <div style="font-size:28px;">${p.icon}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:700;color:var(--text-dark);font-size:14.5px;">${p.shortName}</div>
+              <div style="font-size:12.5px;color:var(--text-muted);">${docTypeLabel} (Word) + Planilla de certificación (Excel)</div>
+            </div>
+            <a href="docs/${p.silabo}" download class="download-link" style="white-space:nowrap;">⬇ Sílabo</a>
+            <a href="docs/${p.excel}" download class="download-link" style="white-space:nowrap;">⬇ Excel</a>
+          </div>`;
+        });
+
+        return introNote + allHtml + `
+          <h3>Documentos clave — descárgalos ahora</h3>
+          <p style="font-size:14.5px;">Estos son los documentos oficiales de tu certificación. <strong>Tenelos a mano desde el inicio</strong>: contienen el cronograma referencial (Anexo 1), el Informe de Implementación Anticipada (Anexo 2) y la encuesta de retroalimentación (Anexo 3).</p>
+          ${docsPreview}
+          <div class="callout callout-info">
+            <p><span class="callout-icon">📥</span>También están disponibles al final de esta inducción (Módulo 9) por si los pierdes.</p>
+          </div>
+        `;
+      },
+      quiz: () => {
+        const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+        if (keys.length === 0) return null;
+        // Multi-role gets a specific quiz
+        if (keys.length > 1) {
+          return {
+            question: 'Tienes roles combinados (' + keys.length + ' certificaciones). ¿Qué significa esto?',
+            options: [
+              'Recibo una sola certificación por todo',
+              'Recibo una certificación independiente por cada rol que cumplo',
+              'Recibo solo la certificación con más horas',
+              'Tengo que elegir cuál quiero'
+            ],
+            correct: 1,
+            feedback: {
+              correct: '¡Exacto! Recibes una certificación independiente por cada rol. Las horas se acumulan: ' + keys.reduce(function(s,k){return s + parseInt(getPath(k).hours);}, 0) + 'h totales en tu caso.',
+              incorrect: 'Cuando tienes <strong>roles combinados</strong>, recibes <strong>una certificación independiente por cada rol</strong>. No es una sola combinada ni hay que elegir.'
+            }
+          };
+        }
+        const cp = getPath(keys[0]);
+        const isAIP = cp.isAIP;
+        const is120 = cp.hours === '120';
+        if (isAIP) {
+          return {
+            question: 'Como Coordinador AIP/PIP, ¿cuál es tu rol principal en el componente de "demostración audiovisual"?',
+            options: [
+              'Hacer mi propia grabación implementando el programa',
+              'Apoyar a los docentes en su grabación de evidencia',
+              'No participo, no aplica para mi rol',
+              'Editar los videos de los docentes'
+            ],
+            correct: 1,
+            feedback: {
+              correct: '¡Exacto! Como AIP/PIP tu rol es apoyar logística y técnicamente a los docentes para que puedan grabar sus sesiones.',
+              incorrect: 'Como Coordinador AIP/PIP, tu rol es <strong>apoyar a los docentes</strong> en sus grabaciones (preparar el laboratorio, equipos, etc.), no hacer la tuya propia.'
+            }
+          };
+        }
+        if (is120) {
+          return {
+            question: '¿Por qué te corresponde el Plan de Estudios de 120 horas en lugar del Sílabo de 80h?',
+            options: [
+              'Porque es opcional y elegí el más largo',
+              'Porque tengo 2 o más secciones asignadas al programa',
+              'Porque enseño un tema avanzado',
+              'Porque el de 80h ya está lleno'
+            ],
+            correct: 1,
+            feedback: {
+              correct: 'Correcto. Con 2+ secciones, las horas de implementación se duplican y por eso te corresponde el Plan de 120h.',
+              incorrect: 'El Plan de 120h es para docentes con <strong>2 o más secciones asignadas</strong> al programa. No es opcional.'
+            }
+          };
+        }
+        return {
+          question: 'Tu sílabo de 80h te corresponde porque…',
+          options: [
+            'Tengo 1 sección asignada al programa',
+            'Tengo 3+ secciones',
+            'Soy coordinador AIP',
+            'Es la misma certificación para todos'
+          ],
+          correct: 0,
+          feedback: {
+            correct: '¡Correcto! El Sílabo de 80h es para docentes con 1 sección. Si tuvieras 2+ pasarías al Plan de 120h.',
+            incorrect: 'El Sílabo de 80h corresponde a docentes con <strong>1 sección asignada</strong>. Con 2+ secciones, sería el Plan de 120h.'
+          }
+        };
+      }
+    },
+
+    {
+      id: 'evaluacion',
+      title: 'Cómo se evalúa (50 / 30 / 20)',
+      eyebrow: 'Módulo 3 de 9',
+      duration: '~5 min',
+      content: () => {
+        const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+        const cp = keys.length > 0 ? getPath(keys[0]) : null;
+        const isAIP = cp && cp.isAIP;
+        const expectedLab = cp && cp.expectedLabSessions ? cp.expectedLabSessions : 16;
+        const minLab = cp && cp.minLabSessions ? cp.minLabSessions : 11;
+        const expectedDocs = cp && cp.expectedDocs ? cp.expectedDocs : 8;
+        const minDocs = cp && cp.minDocs ? cp.minDocs : 5;
+        const docsLabel = cp && cp.docsLabel ? cp.docsLabel : 'sesiones de aprendizaje';
+        const roleShort = cp ? cp.shortName : 'tu plan';
+
+        // Pick a realistic mid-case example for the calc
+        const exLab = Math.max(minLab, Math.round(expectedLab * 0.85)); // 85% facilitadas
+        const exLabNote = Math.round((exLab / expectedLab) * 200) / 10; // /20 scale
+        const exDocs = Math.max(minDocs, Math.round(expectedDocs * 0.75)); // 75% entregadas
+        // Productos blended: curso (auto 100%) + docs (exDocs/expected) + demo (1/1)
+        const cursoCumpl = cp && cp.perfHours > 0 ? 1 : null;
+        const docsCumpl = exDocs / expectedDocs;
+        const demoCumpl = isAIP ? null : 1;
+        const productCumplArr = [cursoCumpl, docsCumpl, demoCumpl].filter(function(v){return v !== null;});
+        const exProductsCumpl = productCumplArr.reduce(function(s,v){return s+v;}, 0) / productCumplArr.length;
+        const exProductsNote = Math.round(exProductsCumpl * 200) / 10;
+        const exAcompNote = 18; // ejemplo: 4.5 de 5 hitos = 18
+        const presPond = Math.round(exLabNote * 0.5 * 100) / 100;
+        const prodPond = Math.round(exProductsNote * 0.3 * 100) / 100;
+        const acompPond = Math.round(exAcompNote * 0.2 * 100) / 100;
+        const finalNote = Math.round((presPond + prodPond + acompPond) * 100) / 100;
+
+        const labRowExample = isAIP
+          ? `<li>Soporte a <strong>≥ 75%</strong> de las sesiones del programa en tu IE → equivalente a <strong>20 / 20</strong> en presencia (registro automático en uDocz).</li>`
+          : `<li>Facilita <strong>${exLab} de ${expectedLab}</strong> sesiones esperadas. Nota = (${exLab} ÷ ${expectedLab}) × 20 = <strong>${exLabNote.toFixed(1)} / 20</strong>.</li>`;
+
+        const labComponentExplain = isAIP
+          ? `<p>Como Coordinador AIP/PIP, tu presencia se mide por el <strong>porcentaje de sesiones del programa de tu IE en las que brindaste soporte</strong>. Mínimo aprobatorio: <strong>≥ 75%</strong> de las sesiones programadas.</p>`
+          : `<p>Para tu plan (<strong>${roleShort}</strong>), se esperan <strong>~${expectedLab} sesiones</strong> facilitadas en el período mayo–julio (descontando Semana Santa, Día del Maestro, Fiestas Patrias y semanas de gestión). El <strong>mínimo aprobatorio en este componente es ${minLab} sesiones</strong> (~70%) — eso te da margen si pierdes algunas semanas por imprevistos.</p>`;
+
+        const productExplain = isAIP
+          ? `<p>Tu rol no incluye demostración propia. Tus productos son <strong>5 protocolos de soporte técnico</strong> (mínimo 4 para aprobar) + <strong>apoyo a las grabaciones de los docentes</strong>.</p>`
+          : `<p>Tus productos son: el <strong>curso de perfeccionamiento docente NUEVO</strong> (asincrónico, registro automático — es un curso nuevo, no el de capacitación inicial de 16h), <strong>${expectedDocs} ${docsLabel}</strong> (mínimo ${minDocs} para aprobar — <strong>~70%</strong>, no 100%), y <strong>1 demostración audiovisual</strong> (video o audio de 15–45 min de una sesión).</p>`;
+
+        return `
+        <div class="lesson">
+          <p>La nota se calcula con un <strong>promedio ponderado</strong> de tres componentes en <strong>escala vigesimal peruana (0 a 20)</strong>. La <strong>nota mínima aprobatoria es 14</strong>.</p>
+
+          <div class="callout callout-warning">
+            <p><span class="callout-icon">⚠️</span><strong>Importante para entender los números:</strong> "18 de 20" significa <strong>una nota de 18 puntos sobre 20</strong> (escala MINEDU), <strong>NO 18 evidencias de 20 evidencias</strong>. La cantidad real de evidencias que pedimos por componente está más abajo.</p>
+          </div>
+
+          <h3>Los tres componentes</h3>
+
+          <div class="info-card">
+            <h4>📊 50% — Presencia en laboratorio</h4>
+            ${labComponentExplain}
+            <p style="font-size:13.5px;color:var(--text-muted);margin-top:8px;"><strong>Registro:</strong> automático en uDocz. Tú no llenas reportes.</p>
+          </div>
+
+          <div class="info-card">
+            <h4>📦 30% — Productos y autoestudio</h4>
+            ${productExplain}
+            <p style="font-size:13.5px;color:var(--text-muted);margin-top:8px;"><strong>Registro:</strong> automático para el curso de perfeccionamiento; manual (correo eligiendomicamino@worldbankgroup.org) para los demás.</p>
+          </div>
+
+          <div class="info-card">
+            <h4>🤝 20% — Acompañamiento y evaluaciones</h4>
+            <ul>
+              <li><strong>Comunicaciones EMC</strong> — mínimo 2 de 3 llamadas mensuales (registro automático).</li>
+              <li><strong>Apoyo a evaluaciones IPA</strong> — línea base (marzo), media (abril) y final (julio).</li>
+              <li><strong>Encuesta del programa</strong> — apoyo en evaluaciones aplicadas a tus estudiantes.</li>
+              <li><strong>Feedback al programa</strong> — Anexo 3 entregado.</li>
+            </ul>
+          </div>
+
+          <h3>Ejemplo de cálculo realista</h3>
+          <p style="font-size:14px;color:var(--text-muted);">Caso: un docente de tu plan que perdió algunas sesiones por imprevistos del calendario y entregó la mayoría (no todas) de las ${docsLabel}.</p>
+
+          <div class="info-card" style="background:#fffaeb;border-color:var(--primary-light);">
+            <h4 style="color:var(--primary-dark);">📐 Componente 1: Presencia (50%)</h4>
+            <ul style="font-size:14.5px;">${labRowExample}</ul>
+            <p style="font-size:14.5px;margin-top:8px;"><strong>Aporte ponderado:</strong> ${exLabNote.toFixed(1)} × 0.5 = <strong>${presPond.toFixed(2)}</strong> puntos</p>
+          </div>
+
+          <div class="info-card" style="background:#fffaeb;border-color:var(--primary-light);">
+            <h4 style="color:var(--primary-dark);">📦 Componente 2: Productos (30%)</h4>
+            <ul style="font-size:14.5px;">
+              ${cp && cp.perfHours > 0 ? `<li>Curso de perfeccionamiento: <strong>completado</strong> (1/1 = 100%)</li>` : ''}
+              ${!isAIP ? `<li>${docsLabel}: <strong>${exDocs} de ${expectedDocs}</strong> entregadas (${Math.round(docsCumpl*100)}%)</li>
+              <li>Demostración audiovisual: <strong>1/1 entregada</strong> (100%)</li>` : `<li>5 de 5 protocolos entregados (100%)</li>
+              <li>Apoyo en grabaciones: completado (100%)</li>`}
+            </ul>
+            <p style="font-size:14.5px;margin-top:8px;">Promedio de cumplimiento: <strong>${(exProductsCumpl*100).toFixed(0)}%</strong> → Nota = ${(exProductsCumpl*100).toFixed(0)}% × 20 = <strong>${exProductsNote.toFixed(1)} / 20</strong></p>
+            <p style="font-size:14.5px;"><strong>Aporte ponderado:</strong> ${exProductsNote.toFixed(1)} × 0.3 = <strong>${prodPond.toFixed(2)}</strong> puntos</p>
+          </div>
+
+          <div class="info-card" style="background:#fffaeb;border-color:var(--primary-light);">
+            <h4 style="color:var(--primary-dark);">🤝 Componente 3: Acompañamiento (20%)</h4>
+            <ul style="font-size:14.5px;">
+              <li>Asistió a 2 de 3 llamadas EMC (mínimo cumplido)</li>
+              <li>Apoyó las 3 evaluaciones IPA (línea base, media, final)</li>
+              <li>Entregó el Anexo 3 (feedback)</li>
+            </ul>
+            <p style="font-size:14.5px;margin-top:8px;">Cumplimiento de hitos: <strong>~90%</strong> → Nota = <strong>${exAcompNote} / 20</strong></p>
+            <p style="font-size:14.5px;"><strong>Aporte ponderado:</strong> ${exAcompNote} × 0.2 = <strong>${acompPond.toFixed(2)}</strong> puntos</p>
+          </div>
+
+          <div class="callout callout-success">
+            <p><span class="callout-icon">✅</span><strong>Nota final = ${presPond.toFixed(2)} + ${prodPond.toFixed(2)} + ${acompPond.toFixed(2)} = ${finalNote.toFixed(2)} → APROBADO</strong> (≥ 14, escala 0–20).</p>
+          </div>
+
+          <div class="callout callout-tip">
+            <p><span class="callout-icon">💡</span><strong>El sistema te da margen.</strong> No necesitas hacer el 100% de cada cosa. Los mínimos están en <strong>~70%</strong> por componente para que faltar a algunas sesiones por imprevistos del calendario (Semana Santa, gestión, elecciones, enfermedad) no te impida certificarte. Si haces lo que puedes y cumples los mínimos en cada componente, apruebas.</p>
+          </div>
+        </div>
+      `;
+      },
+      quiz: {
+        question: 'Un docente obtiene una nota de 12 en presencia, 18 en productos y 17 en acompañamiento (escala 0–20). ¿Aprueba la certificación?',
+        options: ['Sí, porque las notas son sobre 20 puntos cada una y el promedio ponderado da 14.8','No, su presencia (12) está por debajo de 14','Sí, pero solo si entregó 20 productos','No, porque le falta cumplir un componente'],
+        correct: 0,
+        feedback: {
+          correct: 'Correcto. Promedio ponderado = (12 × 0.5) + (18 × 0.3) + (17 × 0.2) = 6 + 5.4 + 3.4 = <strong>14.8</strong>. Como 14.8 ≥ 14, aprueba. Las notas son <strong>vigesimales (0–20)</strong>, NO conteo de evidencias.',
+          incorrect: 'Las notas son en <strong>escala 0–20 (peruana)</strong>, no son cantidades de evidencias. Calculemos: (12 × 0.5) + (18 × 0.3) + (17 × 0.2) = 6 + 5.4 + 3.4 = <strong>14.8</strong>. Como 14.8 ≥ 14, sí aprueba.'
+        }
+      }
+    },
+
+    {
+      id: 'fase-anticipada',
+      title: 'Fase anticipada y Anexo 2',
+      eyebrow: 'Módulo 4 de 9',
+      duration: '~4 min',
+      content: () => {
+        const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+        const docTypeLabel = function(p) { return p.hours === '120' ? 'plan de estudios de 120 horas' : 'sílabo de 80 horas'; };
+        const downloads = keys.map(function(k) {
+          const p = getPath(k);
+          return `<a class="download-link" href="docs/${p.silabo}" download style="display:inline-block;margin:4px 6px 4px 0;">⬇ ${p.icon} ${docTypeLabel(p)}</a>`;
+        }).join('');
+        return `
+        <div class="lesson">
+          <h3>¿Por qué existe una "fase anticipada"?</h3>
+          <p>El programa <strong>arrancó</strong> en aula el <strong>23 de marzo de 2026</strong>, pero la aprobación formal de la certificación por parte de la DRELM toma aproximadamente 20 días hábiles. Por eso, el curso formal inició el <strong>4 de mayo</strong>.</p>
+          <p>Para no perder las horas trabajadas entre el <strong>23 de marzo y el 2 de mayo</strong>, esas sesiones se acreditan mediante un informe — el <strong>Anexo 2</strong> de tu ${keys.length > 0 ? docTypeLabel(getPath(keys[0])) : 'sílabo / plan de estudios'}.</p>
+          <div class="callout callout-tip"><p><span class="callout-icon">💡</span>El Anexo 2 "recupera" las horas previas al 4 de mayo y las suma a tu certificación. Sin él, esas semanas no contarían.</p></div>
+
+          <h3>¿Qué debes registrar?</h3>
+          <p>El informe es breve. Incluye:</p>
+          <ol>
+            <li><strong>Verificación de acceso a la plataforma:</strong> confirmas que tus estudiantes tienen acceso activo a uDocz (la lista detallada por estudiante ya está en el reporte automático de uDocz, no la copies a mano).</li>
+            <li><strong>Sesiones realizadas:</strong> tabla con fecha, sección y descripción breve de cada sesión que facilitaste entre el 23 de marzo y el 2 de mayo.</li>
+            <li><strong>Qué funcionó bien y qué necesita mejorar:</strong> sección breve (5–10 líneas).</li>
+            <li><strong>Reflexión personal:</strong> <strong>máximo 1 página</strong>, en el mismo documento (no como archivo separado).</li>
+          </ol>
+
+          <div class="callout callout-info">
+            <p><span class="callout-icon">♿</span><strong>Estudiantes con discapacidad cognitiva o que no acceden a la plataforma:</strong> repórtalo en el campo <em>"Observaciones adicionales"</em> del Anexo 2. Esos estudiantes <strong>no afectan tu nota</strong> — el equipo EMC los excluye del cómputo.</p>
+          </div>
+
+          <h3>¿Cómo lo registro?</h3>
+          <p>Descarga el formato del Anexo 2 que viene incluido en tu ${keys.length > 0 ? docTypeLabel(getPath(keys[0])) : 'sílabo / plan de estudios'} (segundo anexo del documento):</p>
+          ${downloads ? `<div style="margin:10px 0 16px;">${downloads}</div>` : '<p style="font-size:13px;color:var(--text-muted);">Completa primero el cuestionario inicial para ver tu descarga.</p>'}
+          <p>Una vez completo, lo envías como un solo archivo (Word o PDF) por correo a:</p>
+          <p><strong>📧 eligiendomicamino@worldbankgroup.org</strong></p>
+          <div class="callout callout-warning"><p><span class="callout-icon">📅</span><strong>Fecha sugerida de envío: antes del 30 de mayo de 2026</strong>. Si lo envías más tarde igual cuenta, pero conviene registrarlo a tiempo para que no se acumule trabajo al cierre del curso.</p></div>
+          <div class="callout callout-tip"><p><span class="callout-icon">✉️</span><strong>Asunto sugerido del correo:</strong><br><code style="background:#fffaeb;padding:4px 8px;border-radius:4px;font-size:13px;">Anexo 2 — [Apellido Nombre] — [IE] — [Rol: Mate / OV / AIP]</code><br>Ejemplo: <em>Anexo 2 — Pérez Juan — IE 1234 — Mate</em></p></div>
+        </div>
+      `;
+      },
+      quiz: {
+        question: '¿Cómo se acreditan las sesiones que realizaste entre el 23 de marzo y el 2 de mayo?',
+        options: ['No se acreditan, solo cuentan las horas desde el 4 de mayo','Se acreditan automáticamente desde uDocz','Mediante el Informe de Implementación Anticipada (Anexo 2)','Hay que pedir una certificación aparte a la DRELM'],
+        correct: 2,
+        feedback: {
+          correct: 'Exacto. El Anexo 2 acredita las horas trabajadas durante la fase anticipada. Sin él, esas horas se perderían.',
+          incorrect: 'La respuesta correcta es el <strong>Anexo 2 (Informe de Implementación Anticipada)</strong>. Es la herramienta para que las sesiones previas al 4 de mayo cuenten.'
+        }
+      }
+    },
+
+    {
+      id: 'productos',
+      title: 'Productos a entregar',
+      eyebrow: 'Módulo 5 de 9',
+      duration: '~5 min',
+      content: () => {
+        const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+        if (keys.length === 0) return '<p>Completa el cuestionario inicial.</p>';
+        const isMulti = keys.length > 1;
+
+        let perRoleHtml = keys.map(function(k) {
+          const cp = getPath(k);
+          const items = (cp.productsList || []).map(function(it) {
+            const tag = it.auto ? `<span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-left:6px;">AUTOMÁTICO</span>` : `<span style="background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-left:6px;">MANUAL</span>`;
+            const isDemo = /Demostraci/i.test(it.label);
+            const demoTag = isDemo ? `<span style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:white;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;margin-left:6px;">⭐ EVIDENCIA CLAVE</span>` : '';
+            const rowStyle = isDemo ? 'padding:14px 16px;border:2px solid var(--primary);background:linear-gradient(135deg,#fffaeb 0%,#FFF 100%);' : 'padding:12px 14px;';
+            return `<div class="module-row" style="${rowStyle}">
+              <div class="module-num-sm" style="font-size:11px;">${it.auto ? '⚙️' : (isDemo ? '🎥' : '📨')}</div>
+              <div class="module-info">
+                <h5>${it.label}${tag}${demoTag}</h5>
+                <p>${it.detail}</p>
+              </div>
+              <span class="module-hours">${it.hours}</span>
+            </div>`;
+          }).join('');
+          return `
+            <div class="info-card" style="border-left:4px solid var(--primary);margin-bottom:18px;">
+              <h4>${cp.icon} Productos para: ${cp.shortName}</h4>
+              <p style="font-size:14.5px;color:var(--text-muted);">${cp.productDetail}</p>
+              <div style="margin-top:14px;">${items}</div>
+            </div>
+          `;
+        }).join('');
+
+        // Build the cantidad + umbral table for the main role
+        const cp0 = getPath(keys[0]);
+        const cantidadTable = cp0.isAIP
+          ? `<table class="data-table"><thead><tr><th>Componente</th><th>Cantidad esperada</th><th>Mínimo aprobatorio</th><th>Tipo registro</th></tr></thead><tbody>
+              <tr><td>Soporte en sesiones del programa</td><td>≥ 75% de las sesiones de tu IE</td><td>≥ 75%</td><td>Automático (uDocz)</td></tr>
+              <tr><td>Protocolos de soporte técnico</td><td>5 protocolos</td><td>4 protocolos</td><td>Manual (correo)</td></tr>
+              <tr><td>Apoyo a docentes en grabación</td><td>Apoyo a todos los docentes de tu IE</td><td>≥ 75%</td><td>Confirmación EMC</td></tr>
+              <tr><td>Llamadas EMC mensuales</td><td>3 llamadas</td><td>2 de 3</td><td>Automático</td></tr>
+              <tr><td>Apoyo a evaluaciones IPA</td><td>3 (línea base + media + final)</td><td>2 de 3</td><td>Firma IPA</td></tr>
+              <tr><td>Anexo 3 (feedback)</td><td>1 entregado</td><td>1 entregado</td><td>Manual (correo)</td></tr>
+            </tbody></table>`
+          : `<table class="data-table"><thead><tr><th>Componente</th><th>Cantidad esperada</th><th>Mínimo aprobatorio</th><th>Tipo registro</th></tr></thead><tbody>
+              <tr><td>Sesiones facilitadas en laboratorio</td><td>~${cp0.expectedLabSessions} sesiones</td><td><strong>${cp0.minLabSessions}</strong> sesiones (~70%)</td><td>Automático (uDocz)</td></tr>
+              <tr><td>Curso de perfeccionamiento docente</td><td>Completar 100%</td><td>Completar 100%</td><td>Automático (eligiendomicamino.org)</td></tr>
+              <tr><td>${cp0.docsLabel}</td><td>${cp0.expectedDocs} ${cp0.docsLabel}</td><td><strong>${cp0.minDocs}</strong> ${cp0.docsLabel} (~70%)</td><td>Manual (correo)</td></tr>
+              <tr><td>Demostración audiovisual</td><td>1 video o audio (15–45 min)</td><td>1 entregado</td><td>Manual (correo)</td></tr>
+              <tr><td>Llamadas EMC mensuales</td><td>3 llamadas</td><td>2 de 3</td><td>Automático</td></tr>
+              <tr><td>Apoyo a evaluaciones IPA</td><td>3 (línea base + media + final)</td><td>2 de 3</td><td>Firma IPA</td></tr>
+              <tr><td>Anexo 3 (feedback)</td><td>1 entregado</td><td>1 entregado</td><td>Manual (correo)</td></tr>
+            </tbody></table>`;
+
+        return `
+          <div class="lesson">
+            <div class="callout callout-tip"><p><span class="callout-icon">💡</span><strong>Recuerda:</strong> el componente de <strong>presencia (50%)</strong> se registra automáticamente en uDocz cuando facilitas una sesión — no tienes que enviar nada para esa parte. Lo de abajo son las evidencias <strong>manuales</strong> que sí debes entregar.</p></div>
+
+            ${isMulti ? `<p>Como tienes <strong>${keys.length} certificaciones</strong>, tienes productos específicos para <strong>cada rol</strong>. Aquí los detalles para cada uno:</p>` : `<p>Esta es tu lista personalizada de productos según tu rol:</p>`}
+
+            ${perRoleHtml}
+
+            <h3>Cantidades exactas y mínimos para aprobar</h3>
+            <p style="font-size:14.5px;">El programa <strong>te da margen</strong>: no necesitas hacer el 100% de cada cosa para certificarte. Los mínimos están en aproximadamente <strong>70%</strong>:</p>
+            ${cantidadTable}
+            <div class="callout callout-info" style="margin-top:14px;"><p><span class="callout-icon">📌</span>Si pierdes algunas semanas por imprevistos del calendario (Semana Santa, gestión, elecciones, enfermedad, sala AIP no disponible), <strong>todavía puedes aprobar</strong> mientras te mantengas por encima de los mínimos.</p></div>
+
+            <h3>¿Cómo entrego todo?</h3>
+            <div class="callout callout-info"><p><span class="callout-icon">📧</span>Las entregas manuales se envían al correo:<br><strong>eligiendomicamino@worldbankgroup.org</strong></p></div>
+            <div class="callout callout-info"><p><span class="callout-icon">📊</span>La <strong>planilla de certificación (Excel)</strong> es la herramienta que el equipo EMC y la DRELM usan para registrar tu nota final. Puedes descargarla como referencia en el módulo 9.</p></div>
+            ${isMulti ? `<div class="callout callout-warning"><p><span class="callout-icon">⚠️</span>Como tienes <strong>${keys.length} certificaciones</strong>, debes entregar los productos de <strong>cada una</strong> por separado. Indica claramente en el correo a cuál corresponde cada entrega.</p></div>` : ''}
+          </div>
+        `;
+      },
+      quiz: {
+        question: '¿A qué correo se envían las sesiones de aprendizaje, la demostración audiovisual y el feedback final?',
+        options: ['soporte@udocz.com','certificacion@drelm.gob.pe','eligiendomicamino@worldbankgroup.org','A través de un formulario de Google'],
+        correct: 2,
+        feedback: {
+          correct: '¡Correcto! Todas las entregas se envían a <strong>eligiendomicamino@worldbankgroup.org</strong>.',
+          incorrect: 'El correo correcto es <strong>eligiendomicamino@worldbankgroup.org</strong>. Asegúrate de tenerlo guardado.'
+        }
+      }
+    },
+
+    {
+      id: 'calendario',
+      title: 'Calendario y fechas clave',
+      eyebrow: 'Módulo 6 de 9',
+      duration: '~3 min',
+      content: () => `
+        <div class="lesson">
+          <p>Estas son las fechas clave del curso:</p>
+          <table class="data-table">
+            <thead><tr><th>Fecha</th><th>Hito</th><th>Qué pasa</th></tr></thead>
+            <tbody>
+              <tr><td><strong>23 mar – 2 may</strong></td><td>Fase anticipada</td><td>Las sesiones se acreditan con el Anexo 2.</td></tr>
+              <tr><td><strong>4 de mayo</strong></td><td>Inicio formal</td><td>Disponible la inducción asincrónica en eligiendomicamino.org.</td></tr>
+              <tr><td><strong>Mayo – julio</strong></td><td>Implementación</td><td>Supervisión semanal, perfeccionamiento, entregas progresivas.</td></tr>
+              <tr><td><strong>30 de julio</strong></td><td>Cierre del curso</td><td>Entregas finales, encuesta de retroalimentación.</td></tr>
+            </tbody>
+          </table>
+          <h3>Cronograma referencial</h3>
+          <p>Tu sílabo o plan de estudios tiene un <strong>Anexo 1</strong> con el cronograma referencial de 12 semanas (es el primer anexo del documento Word). Lo descargaste en el módulo 4 — revísalo cuando necesites confirmar fechas. Las fechas exactas de las llamadas mensuales con EMC se coordinan durante la implementación.</p>
+          <div class="callout callout-warning"><p><span class="callout-icon">📅</span>Las llamadas EMC son <strong>asistencia mínima de 2 de 3</strong>. Marca tus calendarios cuando el equipo te confirme las fechas.</p></div>
+          <div class="callout callout-info"><p><span class="callout-icon">⚠️</span><strong>Semanas que no contarán como sesión:</strong> Semana Santa, Día del Maestro (6 de julio), Fiestas Patrias (28-29 de julio), y semanas de gestión escolar o elecciones. Esto ya está considerado en los mínimos aprobatorios de tu rol.</p></div>
+        </div>
+      `,
+      quiz: {
+        question: '¿Cuándo es el inicio formal del curso?',
+        options: ['23 de marzo de 2026','4 de mayo de 2026','1 de junio de 2026','30 de julio de 2026'],
+        correct: 1,
+        feedback: {
+          correct: 'Exacto. El inicio formal es el <strong>4 de mayo</strong>. Las actividades anteriores se acreditan con el Anexo 2.',
+          incorrect: 'El inicio formal es el <strong>4 de mayo de 2026</strong>. El 23 de marzo es la fase anticipada y el 30 de julio es el cierre.'
+        }
+      }
+    },
+
+    {
+      id: 'plataformas',
+      title: 'Plataformas y herramientas',
+      eyebrow: 'Módulo 7 de 9',
+      duration: '~4 min',
+      content: () => `
+        <div class="lesson">
+          <p>El programa usa <strong>dos plataformas principales</strong>. Es importante saber qué hace cada una y cuándo entrar.</p>
+          <h3>uDocz — la plataforma de implementación</h3>
+          <div class="info-card">
+            <ul>
+              <li>Tus estudiantes acceden al Tutor de Matemáticas con IA y al Orientador Vocacional con IA.</li>
+              <li>Tú accedes al <strong>dashboard docente</strong> para ver el progreso de tus estudiantes.</li>
+              <li>El sistema <strong>registra automáticamente tu presencia</strong> cuando facilitas una sesión.</li>
+            </ul>
+            <p><strong>¿Cuándo entras?</strong> Cada vez que llevas a tu sección al laboratorio para una sesión del programa.</p>
+          </div>
+          <div class="callout callout-warning">
+            <p><span class="callout-icon">⚠️</span><strong>Importante:</strong> debes <strong>iniciar sesión en uDocz con tu usuario docente</strong> al comenzar cada clase en el laboratorio. Si los estudiantes acceden por su lado y tú no abres la sesión, esa clase <strong>no queda registrada como tuya</strong> y no cuenta para tu presencia. Es el paso más importante de cada sesión.</p>
+          </div>
+          <h3>eligiendomicamino.org — la plataforma de formación</h3>
+          <div class="info-card">
+            <ul>
+              <li>Acceso al <strong>módulo de inducción</strong> (este curso que estás haciendo).</li>
+              <li>Acceso al <strong>curso de perfeccionamiento docente NUEVO</strong> (asincrónico). Es un curso nuevo, distinto al de capacitación inicial de 16h (marzo).</li>
+              <li>Materiales y recursos de apoyo.</li>
+            </ul>
+            <p><strong>¿Cuándo entras?</strong> A tu ritmo. Todo el contenido es asincrónico.</p>
+          </div>
+          <table class="data-table">
+            <thead><tr><th></th><th>uDocz</th><th>eligiendomicamino.org</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Función</strong></td><td>Implementación con estudiantes</td><td>Tu formación docente</td></tr>
+              <tr><td><strong>Modalidad</strong></td><td>Presencial en laboratorio</td><td>Virtual asincrónico</td></tr>
+              <tr><td><strong>Frecuencia</strong></td><td>Por sesión programada</td><td>A tu ritmo</td></tr>
+              <tr><td><strong>Registro</strong></td><td>Automático</td><td>Automático al completar</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout-tip"><p><span class="callout-icon">💡</span>No tienes que registrar manualmente tu asistencia. Ambas plataformas hacen ese trabajo por ti.</p></div>
+          <h3>¿Y si tengo problemas técnicos?</h3>
+          <p>Acércate al <strong>Coordinador AIP / Docente PIP</strong> de tu IE. Ellos están capacitados para resolver incidencias técnicas.</p>
+        </div>
+      `,
+      quiz: {
+        question: '¿En qué plataforma se registra automáticamente tu presencia en el laboratorio?',
+        options: ['eligiendomicamino.org','uDocz (siempre que inicies sesión con tu usuario docente)','POK del MINEDU (Portal de Oferta Formativa)','En ninguna, hay que firmar manualmente'],
+        correct: 1,
+        feedback: {
+          correct: 'Correcto. <strong>uDocz</strong> registra automáticamente tu asistencia cuando facilitas una sesión <em>iniciando sesión con tu usuario docente</em>. Si solo entran los estudiantes, no queda registro.',
+          incorrect: 'La presencia se registra en <strong>uDocz</strong>, pero solo si <strong>tú</strong> abres la sesión con tu usuario docente. eligiendomicamino.org es para tu formación (este curso, perfeccionamiento). POK es donde aparece tu certificado al final.'
+        }
+      }
+    },
+
+    {
+      id: 'faq',
+      title: 'Preguntas frecuentes',
+      eyebrow: 'Módulo 8 de 9',
+      duration: '~6 min',
+      content: () => `
+        <div class="lesson">
+          <p>Estas son las dudas más comunes:</p>
+          <div class="faq">
+
+            <h3 style="margin-top:14px;">Asistencia y presencia</h3>
+
+            <details><summary>¿Necesito registrar manualmente mi asistencia?</summary><p>No. La presencia se registra automáticamente en uDocz cuando facilitas las sesiones del programa. <strong>Importante:</strong> debes acceder con tu usuario docente al iniciar la sesión — si los estudiantes ingresan sin que tú abras la sesión, esa clase no queda registrada como tuya.</p></details>
+
+            <details><summary>¿Y si falto a una sesión por enfermedad o porque la sala AIP no está disponible?</summary><p>Se considera caso excepcional. Reporta al equipo EMC con la fecha y motivo dentro de los <strong>5 días hábiles</strong> posteriores a la inasistencia. El sistema te da margen: el mínimo aprobatorio en presencia está en ~70% de las sesiones esperadas, así que faltar a algunas no te impide certificarte mientras estés por encima del mínimo.</p></details>
+
+            <details><summary>¿Puedo recuperar una sesión perdida en otro horario?</summary><p>Sí, si el AIP de tu IE lo permite y la sesión recuperada cae dentro del calendario del programa (mayo–julio). Coordina con el coordinador AIP/PIP de tu IE para reservar el laboratorio. Cuando facilites la sesión recuperada, queda registrada igual que las demás.</p></details>
+
+            <details><summary>¿Qué pasa con estudiantes que no pueden ingresar a la plataforma (inclusión cognitiva)?</summary><p>Repórtalos en el campo <em>"Observaciones adicionales"</em> del Anexo 2 (fase anticipada) o en tu próxima entrega de feedback. Esos estudiantes <strong>no afectan tu nota</strong> — el equipo EMC los excluye del cómputo de tu presencia y participación.</p></details>
+
+            <details><summary>¿Desde cuándo puedo avisar de una inasistencia?</summary><p>Desde la fase anticipada (23 de marzo) en adelante. Si la inasistencia ocurrió antes de saber que existía esta vía, repórtala dentro de los 5 días hábiles desde que conoces el procedimiento.</p></details>
+
+            <details><summary>¿Qué pasa si mi IE no empezó a implementar el programa el 23 de marzo?</summary><p>Sigue las <strong>indicaciones de tu facilitador EMC</strong>. El programa contempla flexibilidad de arranque: algunas IIEE empezaron más tarde por temas operativos. Tu fase anticipada se cuenta desde el día en que efectivamente facilitaste la primera sesión, no desde el 23 de marzo nominal. Documenta las fechas reales en tu Anexo 2.</p></details>
+
+            <h3 style="margin-top:24px;">Productos y entregas</h3>
+
+            <details><summary>¿Tengo que entregar el 100% de las sesiones de aprendizaje?</summary><p>No. El mínimo aprobatorio es aproximadamente <strong>70%</strong> de las esperadas para tu rol. Por ejemplo, en Matemáticas 80h se esperan 8 y el mínimo es 5. Esto te da margen real: lo importante es que las que entregues sean genuinas, no que entregues todas a último momento.</p></details>
+
+            <details><summary>¿Qué formato debe tener la demostración audiovisual?</summary><p>Video o audio de <strong>15 a 45 minutos</strong> mostrando una sesión real implementando el programa. Puede ser una sesión completa o sus momentos clave (apertura, monitoreo, cierre). No necesitas calidad profesional — basta con que se vea/escuche bien y muestre tu práctica.</p></details>
+
+            <details><summary>¿El curso de perfeccionamiento es en vivo? ¿Es el mismo de la capacitación inicial de marzo?</summary><p>No es en vivo. Es <strong>completamente asincrónico</strong> en eligiendomicamino.org y lo completas a tu ritmo. <strong>NO es el mismo</strong> de la capacitación presencial de 16 horas que ya hiciste en marzo: aquel cubrió el onboarding al programa; este profundiza en estrategias de implementación, lectura del dashboard, intervención pedagógica, etc.</p></details>
+
+            <details><summary>¿Puedo empezar el perfeccionamiento desde ya?</summary><p>Sí. Está disponible desde el inicio formal (4 de mayo). Te recomendamos avanzar progresivamente para no acumular trabajo cerca del cierre del curso (30 de julio).</p></details>
+
+            <h3 style="margin-top:24px;">Certificación</h3>
+
+            <details><summary>¿Qué es POK?</summary><p>POK es el <strong>Portal de Oferta Formativa de Calidad del MINEDU</strong>. Ahí queda registrada tu certificación y desde ahí la usas para tu escalafón magisterial. Tu certificado digital de DRELM/Banco Mundial aparece allí después del cierre del curso.</p></details>
+
+            <details><summary>¿Puedo recibir las dos certificaciones (80h y 120h)?</summary><p>No para el mismo rol. Cada docente recibe la que le corresponde según el número de secciones: 1 sección → 80h, 2+ secciones o AIP/PIP → 120h. Si cumples <strong>varios roles distintos</strong> (ej: docente de Matemáticas + tutor OV), sí recibes una certificación independiente por cada rol.</p></details>
+
+            <details><summary>¿Qué pasa si no alcanzo la nota mínima de 14?</summary><p>No se emite el certificado, pero el equipo EMC contactará a tu IE para entender el caso. La mayoría de los casos en riesgo se resuelven coordinando entregas pendientes antes del cierre.</p></details>
+
+            <details><summary>¿Cómo recibo el certificado al final?</summary><p>Es un certificado <strong>digital</strong> emitido por la DRELM en convenio con el Banco Mundial, disponible en <strong>POK (Portal de Oferta Formativa de Calidad del MINEDU)</strong>. Válido para escalafón magisterial.</p></details>
+
+            <details><summary>¿Cuándo me llega el certificado?</summary><p>Después del cierre (30 de julio), DRELM procesa los resultados. Los certificados se emiten típicamente en agosto.</p></details>
+
+            <h3 style="margin-top:24px;">Acompañamiento y dudas</h3>
+
+            <details><summary>¿Las llamadas mensuales son obligatorias?</summary><p>Mínimo 2 de 3. Cuentan para el componente de acompañamiento (20%). El equipo EMC te confirmará las fechas durante la implementación.</p></details>
+
+            <details><summary>¿A quién contacto para dudas?</summary><p>Según el tipo de duda:</p><ul style="margin:8px 0 0 0;font-size:14.5px;"><li><strong>Certificación, calendario, productos:</strong> eligiendomicamino@worldbankgroup.org</li><li><strong>Plataforma uDocz (login, dashboard, errores técnicos):</strong> soporte@udocz.com</li><li><strong>Laboratorio (equipos, conectividad en tu IE):</strong> tu Coordinador AIP/PIP</li><li><strong>Tu facilitador EMC asignado:</strong> coordina las llamadas mensuales y resuelve dudas operativas</li></ul></details>
+
+          </div>
+        </div>
+      `,
+      quiz: {
+        question: 'Si tengo un problema técnico con la plataforma uDocz durante una sesión, ¿a quién acudo primero?',
+        options: ['Al equipo del Banco Mundial','A soporte de uDocz por correo','Al Coordinador AIP / Docente PIP de mi IE','A la DRELM'],
+        correct: 2,
+        feedback: {
+          correct: '¡Correcto! El Coordinador AIP / Docente PIP está capacitado para resolver incidencias en tiempo real.',
+          incorrect: 'La respuesta correcta es <strong>tu Coordinador AIP / Docente PIP</strong>. Están en el laboratorio precisamente para resolver este tipo de situaciones.'
+        }
+      }
+    },
+
+    {
+      id: 'final',
+      title: 'Evaluación final y descargas',
+      eyebrow: 'Módulo 9 de 9',
+      duration: '~7 min',
+      isFinal: true,
+      content: () => {
+        return `
+          <div class="lesson">
+            <h3>📥 Descargas oficiales</h3>
+            <p>Antes de la evaluación final, descarga tus documentos. Los necesitarás para tu certificación:</p>
+            <div class="download-grid" id="downloadGrid"></div>
+            <div class="callout callout-info"><p><span class="callout-icon">💡</span>Guarda estos archivos en un lugar accesible. Los necesitarás durante todo el curso.</p></div>
+
+            <h3>📝 Evaluación final</h3>
+            <p>Para registrar los <strong>puntos de inducción</strong> en tu certificación (suman al componente Acompañamiento, 20%), responde correctamente al menos <strong>6 de 8 preguntas</strong>. Si dudas, revisa los módulos anteriores.</p>
+            <button class="btn btn-primary" id="startFinalBtn" onclick="startFinalQuiz()" style="margin-top:8px;display:${state.finalCompleted ? 'none' : 'inline-block'};">Empezar evaluación final</button>
+            <div id="finalQuizContainer"></div>
+          </div>
+        `;
+      }
+    }
+  ];
+}
+
+// ============================================================================
+// FINAL QUIZ
+// ============================================================================
+const FINAL_QUIZ = [
+  {q:'¿Quién emite la certificación del programa?',o:['uDocz','DRELM en convenio con el Banco Mundial','El MINEDU directamente','La UPC'],c:1},
+  {q:'Soy tutor de orientación vocacional con 3 secciones de 5to. ¿Qué certificación recibo?',o:['Sílabo de 80 horas','Plan de Estudios de 120 horas','Tres sílabos separados','Solo certificado de capacitación inicial'],c:1},
+  {q:'En el ejemplo de cálculo, "presencia 18 de 20" significa:',o:['18 sesiones facilitadas de 20 sesiones totales','Una nota de 18 puntos sobre 20 (escala vigesimal peruana)','18 productos entregados de 20','Una calificación cualitativa'],c:1},
+  {q:'¿Cuál es la nota mínima aprobatoria?',o:['10','11','13','14'],c:3},
+  {q:'¿Tengo que entregar el 100% de las sesiones de aprendizaje para aprobar?',o:['Sí, todas son obligatorias','No, el mínimo aprobatorio está alrededor del 70%','Sí, pero solo para el 80h','Solo el 50%'],c:1},
+  {q:'¿Para qué sirve el Anexo 2?',o:['Es un examen final','Para acreditar las sesiones realizadas entre el 23 de marzo y el 2 de mayo','Para inscribirse en el curso','Es opcional'],c:1},
+  {q:'¿Qué pasa si los estudiantes acceden a uDocz pero yo no inicio sesión con mi usuario docente?',o:['No importa, igual queda registrada mi presencia','La sesión NO se registra como mía y no cuenta para mi nota','Cuenta solo si la coordinadora AIP firma','Tengo que llenar un formulario en papel'],c:1},
+  {q:'El curso de perfeccionamiento docente del módulo 3 de tu sílabo es:',o:['El mismo curso de 16 horas presencial que hiciste en marzo','Un curso nuevo, asincrónico en eligiendomicamino.org, distinto al de marzo','Sesiones en vivo los miércoles','Opcional'],c:1}
+];
+
+// ============================================================================
+// STATE
+// ============================================================================
+const STORAGE_KEY = 'emc_cert_progress_v2';
+let state = loadState();
+let MODULES = [];
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    return {
+      currentModule: s.currentModule || 0,
+      completed: s.completed || {},
+      finalAnswers: s.finalAnswers || {},
+      finalCompleted: s.finalCompleted || false,
+      userName: s.userName || '',
+      pathKey: s.pathKey || null,
+      pathKeys: s.pathKeys || null,
+      intakeStep: s.intakeStep || 0,
+      intakeAnswers: s.intakeAnswers || {},
+      started: s.started || false,
+      userDni: s.userDni || '',
+      userSchool: s.userSchool || ''
+    };
+  } catch(e) {
+    return { currentModule:0, completed:{}, finalAnswers:{}, finalCompleted:false, userName:'', pathKey:null, pathKeys:null, intakeStep:0, intakeAnswers:{}, started:false, userDni:'', userSchool:'' };
+  }
+}
+
+// Google Sheets tracking - same endpoint as the main capacitacion site
+var TRACKING_URL = 'https://script.google.com/macros/s/AKfycbyUeu-Q_wesHnr9Df_OKWgfM6_o7pOMPP2Z5tlxATllORSfAYTDSYKcm-JsqJjS2Rd7/exec';
+function trackProgress(moduleId, stepTitle) {
+  if (!state.userName || !state.userDni) return;
+  var data = {
+    timestamp: new Date().toISOString(),
+    name: state.userName,
+    dni: state.userDni,
+    school: state.userSchool || '',
+    materia: state.pathKey || '',
+    track: 'CERT-INDUCCION',
+    moduleId: moduleId,
+    stepTitle: stepTitle || '',
+    status: 'COMPLETED'
+  };
+  var params = Object.keys(data).map(function(k) { return k + '=' + encodeURIComponent(data[k]); }).join('&');
+  try { fetch(TRACKING_URL + '?' + params, { mode: 'no-cors' }).catch(function(){}); } catch(e){}
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function resetState() {
+  localStorage.removeItem(STORAGE_KEY);
+  state = loadState();
+  // Force a full reload to clean any rendered DOM
+  window.location.href = window.location.pathname + '?reset=1';
+}
+
+// ============================================================================
+// INTAKE
+// ============================================================================
+function renderIntake() {
+  const overlay = document.getElementById('welcomeOverlay');
+  const modal = document.getElementById('welcomeModalContent');
+  overlay.classList.remove('hidden');
+
+  const step = state.intakeStep;
+
+  if (step === 0) {
+    modal.innerHTML = `
+      <div style="font-size:48px; margin-bottom:8px;">🎓</div>
+      <h2>Inducción a tu certificación</h2>
+      <p>Módulo asincrónico para entender tu proceso de certificación en <strong>Eligiendo Mi Camino</strong>. <strong>Completarlo suma puntos</strong> al componente de Acompañamiento (20%) de tu certificación.</p>
+      <div class="stat-row">
+        <div class="stat-block"><div class="stat-block-num">9</div><div class="stat-block-label">Pasos</div></div>
+        <div class="stat-block"><div class="stat-block-num">~30 min</div><div class="stat-block-label">Duración</div></div>
+        <div class="stat-block"><div class="stat-block-num">14/20</div><div class="stat-block-label">Nota mínima</div></div>
+      </div>
+      <p style="font-size:13.5px;">Responderás un breve cuestionario inicial para identificar tu plan de certificación. Tu progreso se guarda y se registra automáticamente.</p>
+      <button class="btn btn-primary btn-block" onclick="state.intakeStep=1; saveState(); renderIntake();">Empezar</button>
+    `;
+    return;
+  }
+
+  // Step 1: personal data (name, DNI, school)
+  if (step === 1) {
+    const name = state.userName || '';
+    const dni = state.userDni || '';
+    const school = state.userSchool || '';
+    const ready = name && dni && school;
+    modal.innerHTML = `
+      <div class="intake-progress"><div class="intake-dot active"></div><div class="intake-dot"></div><div class="intake-dot"></div><div class="intake-dot"></div></div>
+      <div class="intake-step">
+        <h3>1. Tus datos</h3>
+        <p class="step-hint">Estos datos quedan registrados en el sistema y aparecen en tu certificado de inducción.</p>
+        <input type="text" class="intake-input" id="userNameInput" placeholder="Nombre completo *" value="${state.userName||''}" oninput="onPersonalInput()">
+        <input type="text" class="intake-input" id="userDniInput" placeholder="DNI *" value="${state.userDni||''}" maxlength="12" oninput="onPersonalInput()">
+        <input type="text" class="intake-input" id="userSchoolInput" placeholder="Institución educativa *" value="${state.userSchool||''}" oninput="onPersonalInput()">
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-secondary" onclick="state.intakeStep=0; saveState(); renderIntake();">Atrás</button>
+          <button class="btn btn-primary" style="flex:1;" id="step1Next" ${!ready?'disabled':''} onclick="savePersonalAndAdvance()">Siguiente →</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // Step 2: roles (multi-select)
+  if (step === 2) {
+    const roles = state.intakeAnswers.roles || [];
+    const isAip = roles.includes('aip');
+    modal.innerHTML = `
+      <div class="intake-progress"><div class="intake-dot done"></div><div class="intake-dot active"></div><div class="intake-dot"></div><div class="intake-dot"></div></div>
+      <div class="intake-step">
+        <h3>2. ¿Qué roles tienes en el programa?</h3>
+        <p class="step-hint">Puedes seleccionar más de uno si cumples varios roles.</p>
+        <div class="intake-options">
+          <button class="intake-option ${roles.includes('mat')?'selected':''}" onclick="toggleRole('mat')">
+            <span class="intake-icon">📐</span>
+            <div class="intake-option-text">
+              <div class="intake-option-title">Docente de Matemáticas ${roles.includes('mat')?'<i class=\'fas fa-check-circle\' style=\'color:var(--success);margin-left:4px\'></i>':''}</div>
+              <div class="intake-option-desc">Facilito el Tutor de Matemáticas con IA</div>
+            </div>
+          </button>
+          <button class="intake-option ${roles.includes('tut')?'selected':''}" onclick="toggleRole('tut')">
+            <span class="intake-icon">🧭</span>
+            <div class="intake-option-text">
+              <div class="intake-option-title">Tutor de Orientación Vocacional ${roles.includes('tut')?'<i class=\'fas fa-check-circle\' style=\'color:var(--success);margin-left:4px\'></i>':''}</div>
+              <div class="intake-option-desc">Facilito las 12 sesiones del Orientador Vocacional con IA</div>
+            </div>
+          </button>
+          <button class="intake-option ${isAip?'selected':''}" onclick="toggleRole('aip')">
+            <span class="intake-icon">🛠️</span>
+            <div class="intake-option-text">
+              <div class="intake-option-title">Coordinador AIP / Docente PIP ${isAip?'<i class=\'fas fa-check-circle\' style=\'color:var(--success);margin-left:4px\'></i>':''}</div>
+              <div class="intake-option-desc">Brindo soporte técnico al laboratorio para todas las secciones</div>
+            </div>
+          </button>
+        </div>
+        ${roles.length > 1 && !isAip ? `<div class="callout callout-info" style="font-size:13px; padding:10px 14px; margin:0 0 12px;"><p><span class="callout-icon">💡</span>Tienes <strong>roles combinados</strong>. En el siguiente paso indicarás cuántas secciones tienes en cada uno.</p></div>` : ''}
+        ${isAip && roles.length > 1 ? `<div class="callout callout-tip" style="font-size:13px; padding:10px 14px; margin:0 0 12px;"><p><span class="callout-icon">📌</span>Como <strong>AIP/PIP</strong> tu certificación es siempre de 120h y cubre todas las secciones, sin importar otros roles.</p></div>` : ''}
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-secondary" onclick="state.intakeStep=1; saveState(); renderIntake();">Atrás</button>
+          <button class="btn btn-primary" style="flex:1;" ${roles.length === 0 ? 'disabled' : ''} onclick="advanceIntake()">Siguiente →</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // Step 3: sections per role
+  if (step === 3) {
+    const roles = state.intakeAnswers.roles || [];
+    if (roles.length === 1 && roles[0] === 'aip') {
+      state.intakeAnswers.matSections = 0;
+      state.intakeAnswers.tutSections = 0;
+      state.pathKey = 'aip-120';
+      state.intakeStep = 4;
+      saveState();
+      renderIntake();
+      return;
+    }
+    const matSec = state.intakeAnswers.matSections;
+    const tutSec = state.intakeAnswers.tutSections;
+    const askMat = roles.includes('mat');
+    const askTut = roles.includes('tut');
+    const matReady = !askMat || (matSec !== undefined && matSec !== null && matSec !== '');
+    const tutReady = !askTut || (tutSec !== undefined && tutSec !== null && tutSec !== '');
+    const allReady = matReady && tutReady;
+
+    let html = `
+      <div class="intake-progress"><div class="intake-dot done"></div><div class="intake-dot done"></div><div class="intake-dot active"></div><div class="intake-dot"></div></div>
+      <div class="intake-step">
+        <h3>3. ¿Cuántas secciones tienes asignadas?</h3>
+        <p class="step-hint">Indica el número de secciones de 5to de secundaria asignadas al programa para cada rol.</p>
+    `;
+
+    if (askMat) {
+      html += `
+        <div style="margin-bottom:16px;">
+          <div style="font-weight:700; color:var(--primary-dark); font-size:14px; margin-bottom:8px;">📐 Como Docente de Matemáticas:</div>
+          <div class="intake-options">
+            ${[1,2].map(n => {
+              const label = `${n} ${n===1?'sección':'secciones'}`;
+              return `<button class="intake-option ${matSec===n?'selected':''}" style="padding:10px 14px;" onclick="setSections('mat',${n})">
+                <span class="intake-icon" style="width:32px;height:32px;font-size:14px;">${n}</span>
+                <div class="intake-option-text"><div class="intake-option-title" style="font-size:14px;">${label}</div></div>
+              </button>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    if (askTut) {
+      html += `
+        <div style="margin-bottom:16px;">
+          <div style="font-weight:700; color:var(--primary-dark); font-size:14px; margin-bottom:8px;">🧭 Como Tutor de OV:</div>
+          <div class="intake-options">
+            ${[1,2].map(n => {
+              const label = `${n} ${n===1?'sección':'secciones'}`;
+              return `<button class="intake-option ${tutSec===n?'selected':''}" style="padding:10px 14px;" onclick="setSections('tut',${n})">
+                <span class="intake-icon" style="width:32px;height:32px;font-size:14px;">${n}</span>
+                <div class="intake-option-text"><div class="intake-option-title" style="font-size:14px;">${label}</div></div>
+              </button>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    html += `
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-secondary" onclick="state.intakeStep=2; saveState(); renderIntake();">Atrás</button>
+          <button class="btn btn-primary" style="flex:1;" ${!allReady?'disabled':''} onclick="advanceIntake()">Siguiente →</button>
+        </div>
+      </div>
+    `;
+    modal.innerHTML = html;
+    return;
+  }
+
+  // Step 4: show result + start
+  if (step === 4) {
+    if (!state.pathKeys || state.pathKeys.length === 0) {
+      state.pathKeys = computePathKeys();
+      // backwards compat: keep pathKey as the primary one
+      state.pathKey = state.pathKeys[0];
+      saveState();
+    }
+    const paths = state.pathKeys.map(getPath);
+    const totalHours = paths.reduce(function(s, p){ return s + parseInt(p.hours); }, 0);
+    const isMulti = paths.length > 1;
+
+    let cardsHtml = paths.map(function(p) {
+      return `<div class="result-card" style="margin-top:12px;">
+        <span class="result-tag">${p.icon} Certificación</span>
+        <h3 style="margin:8px 0 4px;">${p.name}</h3>
+        <p class="result-sub">${p.type} · ${p.sections}</p>
+        <div class="result-hours">${p.hours}<span style="font-size:24px;"> h</span></div>
+        <div class="result-hours-label">Horas pedagógicas</div>
+      </div>`;
+    }).join('');
+
+    let note = '';
+    if (isMulti) {
+      note = `<div class="callout callout-tip" style="margin-top:14px;"><p><span class="callout-icon">💡</span><strong>Recibirás ${paths.length} certificaciones independientes</strong> — una por cada rol que cumples en el programa. En total: <strong>${totalHours} horas</strong> pedagógicas. Este curso de inducción cubre los detalles de las 3 (información para los ${paths.length} planes).</p></div>`;
+    }
+
+    modal.innerHTML = `
+      <div class="intake-progress"><div class="intake-dot done"></div><div class="intake-dot done"></div><div class="intake-dot done"></div><div class="intake-dot active"></div></div>
+      <div class="intake-step">
+        <h3>¡Listo, ${state.userName.split(' ')[0]}! ${isMulti ? 'Estas son tus certificaciones' : 'Esta es tu certificación'}</h3>
+        ${cardsHtml}
+        ${note}
+        <div style="display:flex; gap:8px; margin-top:18px;">
+          <button class="btn btn-secondary" onclick="state.intakeStep=3; state.pathKey=null; state.pathKeys=null; saveState(); renderIntake();">Atrás</button>
+          <button class="btn btn-primary" style="flex:1;" onclick="finishIntake()">Empezar curso →</button>
+        </div>
+        <p style="font-size:12px; color:var(--text-muted); margin-top:14px;"><a href="#" onclick="resetState(); return false;" style="color:var(--text-muted);">Restablecer datos del curso</a></p>
+      </div>
+    `;
+  }
+}
+
+// Compute the list of path keys based on roles + sections
+function computePathKeys() {
+  const roles = state.intakeAnswers.roles || [];
+  const matSec = state.intakeAnswers.matSections || 0;
+  const tutSec = state.intakeAnswers.tutSections || 0;
+  const out = [];
+  if (roles.includes('mat') && matSec > 0) {
+    out.push(matSec >= 2 ? 'mat-120' : 'mat-80');
+  }
+  if (roles.includes('tut') && tutSec > 0) {
+    out.push(tutSec >= 2 ? 'tut-120' : 'tut-80');
+  }
+  if (roles.includes('aip')) {
+    out.push('aip-120');
+  }
+  if (out.length === 0) out.push('mat-80'); // fallback
+  return out;
+}
+
+// Helpers for personal data step
+function onPersonalInput() {
+  const name = (document.getElementById('userNameInput')||{}).value || '';
+  const dni = (document.getElementById('userDniInput')||{}).value || '';
+  const school = (document.getElementById('userSchoolInput')||{}).value || '';
+  const btn = document.getElementById('step1Next');
+  if (btn) btn.disabled = !(name.trim() && dni.trim() && school.trim());
+}
+
+function savePersonalAndAdvance() {
+  const name = document.getElementById('userNameInput').value.trim();
+  const dni = document.getElementById('userDniInput').value.trim();
+  const school = document.getElementById('userSchoolInput').value.trim();
+  if (!name || !dni || !school) {
+    alert('Por favor completa los tres campos.');
+    return;
+  }
+  state.userName = name;
+  state.userDni = dni;
+  state.userSchool = school;
+  state.intakeStep = 2;
+  saveState();
+  renderIntake();
+}
+
+// Helpers for the new multi-role intake
+// Helpers for the new multi-role intake
+function toggleRole(role) {
+  const roles = state.intakeAnswers.roles || [];
+  const i = roles.indexOf(role);
+  if (i >= 0) roles.splice(i, 1);
+  else roles.push(role);
+  state.intakeAnswers.roles = roles;
+  saveState();
+  renderIntake();
+}
+
+function setSections(role, n) {
+  if (role === 'mat') state.intakeAnswers.matSections = n;
+  if (role === 'tut') state.intakeAnswers.tutSections = n;
+  saveState();
+  renderIntake();
+}
+
+function setIntakeAnswer(key, val) {
+  state.intakeAnswers[key] = val;
+  if (key === 'rol' && val === 'aip') {
+    state.intakeAnswers.sections = 'all';
+  }
+  saveState();
+  renderIntake();
+}
+
+function advanceIntake() {
+  state.intakeStep++;
+  saveState();
+  renderIntake();
+}
+
+function finishIntake() {
+  state.started = true;
+  state.currentModule = 0;
+  saveState();
+  // Track enrollment to Google Sheets
+  trackProgress('ENROLLED', 'Inscripción al curso de inducción');
+  document.getElementById('welcomeOverlay').classList.add('hidden');
+  MODULES = buildModules(state.pathKey);
+  renderModule();
+  renderSidebar();
+  renderProgress();
+}
+
+// ============================================================================
+// UI
+// ============================================================================
+function renderSidebar() {
+  const list = document.getElementById('navList');
+  const pathBox = document.getElementById('myPathBox');
+  list.innerHTML = '';
+  const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+  if (keys.length > 0) {
+    const paths = keys.map(getPath);
+    const totalH = paths.reduce(function(s,p){ return s + parseInt(p.hours); }, 0);
+    const label = paths.length > 1 ? `Tus ${paths.length} certificaciones` : 'Tu plan';
+    let pathsHtml = paths.map(function(p) {
+      return `<div class="my-path-name" style="margin-bottom:4px;">${p.icon} ${p.shortName}</div>`;
+    }).join('');
+    const totalLabel = paths.length > 1 ? `${totalH} h totales` : `${paths[0].hours} horas pedagógicas`;
+    pathBox.innerHTML = `
+      <div class="my-path">
+        <div class="my-path-label">${label}</div>
+        ${pathsHtml}
+        <div class="my-path-hours">${totalLabel}</div>
+        <a href="#" onclick="if(confirm('\u00bfReiniciar el curso? Esto borrar\u00e1 tu progreso y volver\u00e1s al cuestionario inicial.')) resetState(); return false;" style="display:block;margin-top:8px;font-size:11px;color:var(--primary-dark);text-decoration:none;font-weight:600;"><i class="fas fa-rotate-left" style="margin-right:4px;"></i>Cambiar plan / reiniciar</a>
+      </div>
+      <div class="nav-section-title">Módulos del curso</div>
+    `;
+  } else {
+    pathBox.innerHTML = '';
+  }
+  MODULES.forEach((m, i) => {
+    const li = document.createElement('li');
+    li.className = 'nav-item';
+    if (i === state.currentModule) li.classList.add('active');
+    if (state.completed[m.id]) li.classList.add('completed');
+    li.innerHTML = `
+      <div class="nav-num"><span>${i + 1}</span></div>
+      <div class="nav-content">
+        <div class="nav-title">${m.title}</div>
+        <div class="nav-meta">${m.duration}</div>
+      </div>
+    `;
+    li.onclick = () => goToModule(i);
+    list.appendChild(li);
+  });
+}
+
+function renderProgress() {
+  const total = MODULES.length;
+  const done = MODULES.filter(m => state.completed[m.id]).length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${done} de ${total} módulos completados (${pct}%)`;
+}
+
+function renderModule(opts) {
+  opts = opts || {};
+  const savedScroll = opts.preserveScroll ? window.scrollY : 0;
+  const m = MODULES[state.currentModule];
+  document.getElementById('topbarTitle').textContent = m.title;
+  const main = document.getElementById('main');
+
+  const contentHtml = typeof m.content === 'function' ? m.content() : m.content;
+  let html = `
+    <div class="module-header">
+      <div class="module-eyebrow">${m.eyebrow} · ${m.duration}</div>
+      <h1 class="module-title">${m.title}</h1>
+    </div>
+    ${contentHtml}
+  `;
+
+  // Quiz (not final)
+  if (!m.isFinal) {
+    const quizData = typeof m.quiz === 'function' ? m.quiz() : m.quiz;
+    if (quizData) {
+      html += renderQuiz(m.id, quizData, state.completed[m.id]);
+    }
+  }
+
+  html += renderNavButtons();
+  main.innerHTML = html;
+
+  // Restore or reset scroll
+  if (opts.preserveScroll) {
+    window.scrollTo(0, savedScroll);
+  } else {
+    window.scrollTo(0, 0);
+  }
+
+  // Inject downloads on final module
+  if (m.isFinal) {
+    renderDownloads();
+    if (state.finalCompleted) {
+      const correct = countCorrect(state.finalAnswers, FINAL_QUIZ);
+      if (correct >= 6) showCertificate(correct);
+    }
+  }
+}
+
+function renderQuiz(moduleId, quiz, completed) {
+  const savedAnswer = completed ? completed.answer : undefined;
+  let optionsHtml = quiz.options.map((opt, i) => {
+    let cls = 'quiz-option';
+    let disabled = '';
+    if (savedAnswer !== undefined) {
+      disabled = 'disabled';
+      if (i === quiz.correct) cls += ' correct';
+      else if (i === savedAnswer) cls += ' incorrect';
+    }
+    return `<button class="${cls}" ${disabled} onclick="answerQuiz('${moduleId}', ${i}, ${quiz.correct})"><div class="option-letter">${String.fromCharCode(65 + i)}</div><span>${opt}</span></button>`;
+  }).join('');
+
+  let feedbackHtml = '';
+  if (savedAnswer !== undefined) {
+    const isCorrect = savedAnswer === quiz.correct;
+    feedbackHtml = `<div class="quiz-feedback ${isCorrect ? 'correct' : 'incorrect'} show"><strong>${isCorrect ? '✅ ¡Correcto!' : '❌ No es la respuesta correcta.'}</strong><br>${isCorrect ? quiz.feedback.correct : quiz.feedback.incorrect}</div>`;
+  }
+
+  return `
+    <div class="quiz">
+      <div class="quiz-header"><span class="quiz-badge">Comprueba tu comprensión</span></div>
+      <div class="quiz-question">${quiz.question}</div>
+      <div class="quiz-options">${optionsHtml}</div>
+      ${feedbackHtml}
+    </div>
+  `;
+}
+
+function renderNavButtons() {
+  const isLast = state.currentModule === MODULES.length - 1;
+  const isFirst = state.currentModule === 0;
+  const m = MODULES[state.currentModule];
+  const completed = state.completed[m.id];
+  const canAdvance = m.isFinal ? state.finalCompleted : completed;
+  return `
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="prevModule()" ${isFirst ? 'disabled' : ''}>← Anterior</button>
+      ${!isLast ? `<button class="btn btn-primary" onclick="nextModule()" ${!canAdvance ? 'disabled' : ''}>${canAdvance ? 'Siguiente módulo →' : 'Responde para continuar'}</button>` : `<span style="color:var(--text-muted); font-size:14px;">${canAdvance ? '🎉 ¡Curso completado!' : ''}</span>`}
+    </div>
+  `;
+}
+
+function renderDownloads() {
+  const grid = document.getElementById('downloadGrid');
+  if (!grid) return;
+  const myKeys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+  const allFiles = [
+    {key:'mat-80', silabo:'Silabo_80h_Matematica_v6.docx', excel:'Certificacion_80h_Matematica.xlsx', name:'Sílabo 80h: Matemáticas', docType:'Sílabo de 80 horas'},
+    {key:'tut-80', silabo:'Silabo_80h_Tutores_OV_v6.docx', excel:'Certificacion_80h_Tutores_OV.xlsx', name:'Sílabo 80h: Tutores OV', docType:'Sílabo de 80 horas'},
+    {key:'mat-120', silabo:'Plan_Estudios_120h_Matematica_v3.docx', excel:'Certificacion_120h_Matematica.xlsx', name:'Plan 120h: Matemáticas', docType:'Plan de Estudios de 120 horas'},
+    {key:'tut-120', silabo:'Plan_Estudios_120h_Tutores_OV_v3.docx', excel:'Certificacion_120h_Tutores_OV.xlsx', name:'Plan 120h: Tutores OV', docType:'Plan de Estudios de 120 horas'},
+    {key:'aip-120', silabo:'Plan_Estudios_120h_Coordinadores_AIP_v3.docx', excel:'Certificacion_120h_Coordinadores_AIP.xlsx', name:'Plan 120h: Coordinador AIP/PIP', docType:'Plan de Estudios de 120 horas'}
+  ];
+
+  let html = '';
+  // ONLY the user's own files — no others to avoid comparisons
+  myKeys.forEach(function(myKey) {
+    const own = allFiles.find(function(f){ return f.key === myKey; });
+    if (!own) return;
+    html += `
+      <div class="download-card recommended">
+        <div class="download-icon">📄</div>
+        <div class="download-info">
+          <h4>${own.name} <span class="recommended-badge">TUYO</span></h4>
+          <p>${own.docType} — Word (.docx). Incluye Anexo 1 (cronograma), Anexo 2 (informe fase anticipada) y Anexo 3 (encuesta).</p>
+          <a class="download-link" href="docs/${own.silabo}" download>⬇ Descargar</a>
+        </div>
+      </div>
+      <div class="download-card recommended">
+        <div class="download-icon xlsx">📊</div>
+        <div class="download-info">
+          <h4>${own.name} <span class="recommended-badge">TUYO</span></h4>
+          <p>Planilla de certificación — Excel (.xlsx). La usa DRELM para registrar tu nota final; descárgala como referencia.</p>
+          <a class="download-link" href="docs/${own.excel}" download>⬇ Descargar</a>
+        </div>
+      </div>
+    `;
+  });
+  grid.innerHTML = html;
+}
+
+// ============================================================================
+// ACTIONS
+// ============================================================================
+function answerQuiz(moduleId, answerIdx, correctIdx) {
+  if (state.completed[moduleId]) return;
+  state.completed[moduleId] = { answer: answerIdx, correct: answerIdx === correctIdx };
+  saveState();
+  // Track module completion
+  var m = MODULES.find(function(x){ return x.id === moduleId; });
+  trackProgress('MOD-' + moduleId, m ? m.title : moduleId);
+  // Preserve scroll so user sees the feedback right where they were
+  renderModule({preserveScroll: true});
+  renderSidebar();
+  renderProgress();
+  // After re-render, scroll the quiz feedback into view
+  setTimeout(function() {
+    var fb = document.querySelector('.quiz-feedback.show');
+    if (fb) fb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 50);
+}
+
+function nextModule() {
+  if (state.currentModule < MODULES.length - 1) {
+    state.currentModule++;
+    saveState(); renderModule(); renderSidebar(); renderProgress();
+    closeSidebarMobile();
+  }
+}
+function prevModule() {
+  if (state.currentModule > 0) {
+    state.currentModule--;
+    saveState(); renderModule(); renderSidebar(); renderProgress();
+    closeSidebarMobile();
+  }
+}
+function goToModule(i) {
+  state.currentModule = i;
+  saveState(); renderModule(); renderSidebar(); renderProgress();
+  closeSidebarMobile();
+}
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+function closeSidebarMobile() { if (window.innerWidth <= 900) document.getElementById('sidebar').classList.remove('open'); }
+
+// Final quiz
+let finalQuizState = { current: 0 };
+function startFinalQuiz() {
+  finalQuizState = { current: 0 };
+  state.finalAnswers = {};
+  saveState();
+  var btn = document.getElementById('startFinalBtn');
+  if (btn) btn.style.display = 'none';
+  renderFinalQuestion();
+  // Auto-scroll to the first question after rendering
+  setTimeout(function() {
+    var c = document.getElementById('finalQuizContainer');
+    if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+function renderFinalQuestion() {
+  const i = finalQuizState.current;
+  const q = FINAL_QUIZ[i];
+  const total = FINAL_QUIZ.length;
+  const container = document.getElementById('finalQuizContainer');
+  const answered = state.finalAnswers[i];
+  let opts = q.o.map((opt, idx) => {
+    let cls = 'quiz-option', dis = '';
+    if (answered !== undefined) {
+      dis = 'disabled';
+      if (idx === q.c) cls += ' correct';
+      else if (idx === answered) cls += ' incorrect';
+    }
+    return `<button class="${cls}" ${dis} onclick="answerFinal(${idx})"><div class="option-letter">${String.fromCharCode(65 + idx)}</div><span>${opt}</span></button>`;
+  }).join('');
+  let fb = '';
+  let nextBtn = '';
+  if (answered !== undefined) {
+    fb = `<div class="quiz-feedback ${answered === q.c ? 'correct' : 'incorrect'} show"><strong>${answered === q.c ? '✅ Correcto' : '❌ Incorrecto'}</strong></div>`;
+    nextBtn = i < total - 1
+      ? `<button class="btn btn-primary" style="margin-top:16px;" onclick="nextFinalQuestion()">Siguiente pregunta →</button>`
+      : `<button class="btn btn-primary" style="margin-top:16px;" onclick="finishFinalQuiz()">Ver mi resultado</button>`;
+  }
+  container.innerHTML = `
+    <div class="quiz" style="margin-top:20px;">
+      <div class="quiz-progress"><div class="quiz-progress-fill" style="width:${((i+1)/total)*100}%"></div></div>
+      <div style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">Pregunta ${i+1} de ${total}</div>
+      <div class="quiz-question">${q.q}</div>
+      <div class="quiz-options">${opts}</div>
+      ${fb}${nextBtn}
+    </div>
+  `;
+}
+function answerFinal(idx) { state.finalAnswers[finalQuizState.current] = idx; saveState(); renderFinalQuestion(); }
+function nextFinalQuestion() {
+  finalQuizState.current++;
+  renderFinalQuestion();
+  setTimeout(function() {
+    var c = document.getElementById('finalQuizContainer');
+    if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+function countCorrect(answers, quiz) { let c = 0; quiz.forEach((q, i) => { if (answers[i] === q.c) c++; }); return c; }
+function finishFinalQuiz() {
+  const correct = countCorrect(state.finalAnswers, FINAL_QUIZ);
+  const total = FINAL_QUIZ.length;
+  const passed = correct >= 6;
+  state.finalCompleted = true;
+  state.completed['final'] = { answer: 0, correct: passed };
+  saveState();
+  // Track final quiz result
+  trackProgress(passed ? 'CERTIFIED' : 'FINAL-FAILED', 'Evaluación final: ' + correct + '/' + total);
+  const container = document.getElementById('finalQuizContainer');
+  if (passed) {
+    showCertificate(correct);
+  } else {
+    container.innerHTML = `
+      <div class="callout callout-warning" style="margin-top:24px;">
+        <p><span class="callout-icon">📚</span><strong>Tu resultado: ${correct}/${total}</strong></p>
+        <p>Necesitas al menos 6 respuestas correctas. Te recomendamos revisar los módulos anteriores y volver a intentar.</p>
+      </div>
+      <button class="btn btn-primary" style="margin-top:16px;" onclick="state.finalAnswers={}; saveState(); startFinalQuiz();">Intentar de nuevo</button>
+      <button class="btn btn-secondary" style="margin-top:16px;" onclick="goToModule(0)">Volver al inicio</button>
+    `;
+  }
+  renderSidebar(); renderProgress();
+}
+function showCertificate(correct) {
+  const total = FINAL_QUIZ.length;
+  const name = state.userName || 'Docente Participante';
+  const today = new Date().toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' });
+  const keys = state.pathKeys || (state.pathKey ? [state.pathKey] : []);
+  const paths = keys.map(getPath);
+  const totalH = paths.reduce(function(s,p){ return s + parseInt(p.hours); }, 0);
+  const planText = paths.length === 1
+    ? `Plan de certificación: <strong>${paths[0].shortName}</strong>`
+    : `Planes de certificación: <strong>${paths.map(function(p){return p.shortName;}).join(' + ')}</strong> (${totalH}h totales)`;
+  const officialText = paths.length === 1
+    ? `La <strong>certificación oficial</strong> de ${paths[0].hours} horas se obtiene completando todo el programa.`
+    : `Las <strong>${paths.length} certificaciones oficiales</strong> (${totalH}h en total) se obtienen completando todo el programa.`;
+  const container = document.getElementById('finalQuizContainer');
+  container.innerHTML = `
+    <div class="certificate">
+      <div class="cert-icon">🎓</div>
+      <h2 class="cert-title">Puntos de Inducción Acreditados</h2>
+      <div class="cert-subtitle">Programa Eligiendo Mi Camino</div>
+      <div class="cert-name">${name}</div>
+      <div class="cert-body">Ha completado satisfactoriamente la <strong>inducción al proceso de certificación</strong> del programa <strong>Eligiendo Mi Camino</strong>, demostrando comprensión del proceso, los componentes de evaluación y los productos a entregar.<br><br>${planText}</div>
+      <div class="cert-seal">Resultado evaluación final: <strong>${correct}/${total}</strong> &nbsp;·&nbsp; ${today}<br>DRELM · Banco Mundial · uDocz · UPC</div>
+    </div>
+    <div class="callout callout-success">
+      <p><span class="callout-icon">✅</span><strong>Tu resultado se registró automáticamente</strong> en el sistema. No necesitas enviar nada — los puntos de esta inducción ya están sumando al componente Acompañamiento (20%) de tu certificación oficial.</p>
+    </div>
+    <div class="callout callout-info">
+      <p><span class="callout-icon">📌</span>Este comprobante es <strong>solo para tu registro personal</strong>. ${officialText}</p>
+    </div>
+    <button class="btn btn-secondary" style="margin-top:16px;" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+  `;
+}
+
+// ============================================================================
+// INIT
+// ============================================================================
+function init() {
+  // URL param reset
+  if (window.location.search.indexOf('reset') !== -1) {
+    localStorage.removeItem(STORAGE_KEY);
+    state = loadState();
+    history.replaceState({}, '', window.location.pathname);
+  }
+  if (state.started && state.pathKey) {
+    document.getElementById('welcomeOverlay').classList.add('hidden');
+    MODULES = buildModules(state.pathKey);
+    renderModule();
+    renderSidebar();
+    renderProgress();
+  } else {
+    renderIntake();
+  }
+}
+init();
+</script>
+</body>
+</html>
